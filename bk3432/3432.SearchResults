@@ -1,0 +1,79 @@
+---- ahi_init Matches (8 in 4 files) ----
+Ahi.c (sdk\ble_stack\src\ahi):void ahi_init(void)
+Ahi.h (sdk\ble_stack\inc\ahi):void ahi_init(void);
+Bk3432_ble_stack.htm (projects\ble_stack\obj):<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahi_init
+Bk3432_ble_stack.htm (projects\ble_stack\obj):<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahi_init
+Bk3432_ble_stack.htm (projects\ble_stack\obj):<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahi_init
+Bk3432_ble_stack.htm (projects\ble_stack\obj):<LI><a href="#[31a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahi_init
+Bk3432_ble_stack.htm (projects\ble_stack\obj):<P><STRONG><a name="[31a]"></a>ahi_init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, ahi.o(.text), UNUSED)
+Rwip.c (sdk\ble_stack\com\rwip\src):    ahi_init();
+---- ahi_init Search Errors Encountered (1) ----
+The following 1 files could not be processed:
+D:\aileen\bk3432\rw\ble_bk3432_fullcode - org\projects\ble_stack\obj\bk3432_ble_stack.build_log.htm : File could not be opened.
+----  h4tl_init Matches (7 in 3 files) ----
+H4tl.c (sdk\ble_stack\src\h4tl):void h4tl_init(uint8_t tl_type, const struct rwip_eif_api* eif,uint8_t *cur_read_idx)
+H4tl.h (sdk\ble_stack\inc\h4tl)://void h4tl_init(uint8_t tl_type, const struct rwip_eif_api* eif);
+H4tl.h (sdk\ble_stack\inc\h4tl):void h4tl_init(uint8_t tl_type, const struct rwip_eif_api* eif,uint8_t *cur_read_idx);
+Rwip.c (sdk\ble_stack\com\rwip\src):    h4tl_init(H4TL_TYPE_AHI, rwip_eif_get(RWIP_EIF_AHI),&cur_read_buf_idx);
+Rwip.c (sdk\ble_stack\com\rwip\src):    h4tl_init(H4TL_TYPE_AHI, rwip_eif_get(RWIP_EIF_AHI),&cur_read_buf_idx);
+Rwip.c (sdk\ble_stack\com\rwip\src):    h4tl_init(H4TL_TYPE_HCI, rwip_eif_get(RWIP_EIF_HCIH),&cur_read_buf_idx);
+Rwip.c (sdk\ble_stack\com\rwip\src):    h4tl_init(H4TL_TYPE_HCI, rwip_eif_get(RWIP_EIF_HCIC),&cur_read_buf_idx);
+----  h4tl_init Search Errors Encountered (1) ----
+The following 1 files could not be processed:
+D:\aileen\bk3432\rw\ble_bk3432_fullcode - org\projects\ble_stack\obj\bk3432_ble_stack.build_log.htm : File could not be opened.
+---- sw_to_hw Matches (7 in 2 files) ----
+Dbg_swdiag.c (sdk\plactform\core_modules\dbg\src):uint8_t sw_to_hw[DBG_SWDIAG_NB_PROFILES];
+Dbg_swdiag.c (sdk\plactform\core_modules\dbg\src):    // Clear sw_to_hw table
+Dbg_swdiag.c (sdk\plactform\core_modules\dbg\src):        sw_to_hw[i] = DBG_SWDIAG_UNDEFINED;
+Dbg_swdiag.c (sdk\plactform\core_modules\dbg\src):            sw_to_hw[hw_to_sw[i]] = i;
+Dbg_swdiag.h (sdk\plactform\core_modules\dbg\api)://    if(sw_to_hw[DBG_SWDIAG_##bank] != DBG_SWDIAG_UNDEFINED)                           \
+Dbg_swdiag.h (sdk\plactform\core_modules\dbg\api)://        SW_DIAG_SET( ((SW_DIAG_GET()) & (~(DBG_SWDIAG_##bank##_##field##_MASK << (8 * sw_to_hw[DBG_SWDIAG_##bank])))) | ((((value << DBG_SWDIAG_##bank##_##field##_OFFSET) & DBG_SWDIAG_##bank##_##field##_MASK) << (8*sw_to_hw[DBG_SWDIAG_##bank])))  );      \
+Dbg_swdiag.h (sdk\plactform\core_modules\dbg\api):extern uint8_t sw_to_hw[DBG_SWDIAG_NB_PROFILES];
+---- gapm_use_enc_block_ind_handler Matches (2 in 1 files) ----
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):static int gapm_use_enc_block_ind_handler(ke_msg_id_t const msgid,
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):    { GAPM_USE_ENC_BLOCK_IND,                      (ke_msg_func_t) gapm_use_enc_block_ind_handler},
+---- USE_UNUSED_OPCODE Matches (44 in 5 files) ----
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):#if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):#if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):    #if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):    #if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):    #if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):    #if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):    #if USE_UNUSED_OPCODE
+Gapc_task.c (sdk\ble_stack\src\ble\hl\gap\gapc):     #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):#if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):#if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):#if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):#if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm): #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):        #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):        #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_hci.c (sdk\ble_stack\src\ble\hl\gap\gapm):#if USE_UNUSED_OPCODE
+Gapm_task.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_task.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_task.c (sdk\ble_stack\src\ble\hl\gap\gapm):     #if USE_UNUSED_OPCODE
+Gapm_task.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Gapm_task.c (sdk\ble_stack\src\ble\hl\gap\gapm):    #if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):    #if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):#if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):      #if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):      #if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):    #if USE_UNUSED_OPCODE
+Llm_hci.c (sdk\ble_stack\src\ble\ll\llm):    #if USE_UNUSED_OPCODE
+Rwip_config.h (projects\ble_stack\config):#define USE_UNUSED_OPCODE  1
+Rwip_config.h (projects\ble_stack\config):#define USE_UNUSED_OPCODE  0

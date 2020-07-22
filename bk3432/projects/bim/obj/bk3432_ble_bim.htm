@@ -1,0 +1,436 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<title>Static Call Graph - [.\obj\bk3432_ble_bim.axf]</title></head>
+<body><HR>
+<H1>Static Call Graph for image .\obj\bk3432_ble_bim.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat May 09 10:21:02 2020
+<BR><P>
+<H3>Maximum Stack Usage =        168 bytes + Unknown(Functions without stacksize, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+sys_Reset &rArr; bim_main &rArr; bim_select_sec &rArr; bim_check_image_sec_status &rArr; calc_image_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+<P>
+<H3>
+Functions with no stack information
+</H3><UL>
+ <LI><a href="#[9]">vectors</a>
+ <LI><a href="#[8]">sys_Reset</a>
+ <LI><a href="#[1]">Undefined</a>
+ <LI><a href="#[2]">SoftwareInterrupt</a>
+ <LI><a href="#[3]">PrefetchAbort</a>
+ <LI><a href="#[4]">DataAbort</a>
+ <LI><a href="#[6]">IRQ_Handler</a>
+ <LI><a href="#[7]">FIQ_Handler</a>
+ <LI><a href="#[5]">sys_reserved</a>
+</UL>
+</UL>
+<P>
+<H3>
+Function Pointers
+</H3><UL>
+ <LI><a href="#[4]">DataAbort</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[7]">FIQ_Handler</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[6]">IRQ_Handler</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[3]">PrefetchAbort</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[2]">SoftwareInterrupt</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[1]">Undefined</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[8]">sys_Reset</a> from bim_handlers.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+ <LI><a href="#[5]">sys_reserved</a> from bim_vectors.o(SYS_BOOT) referenced from bim_vectors.o(SYS_BOOT)
+</UL>
+<P>
+<H3>
+Global Symbols
+</H3>
+<P><STRONG><a name="[9]"></a>vectors</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+
+<P><STRONG><a name="[8]"></a>sys_Reset</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_handlers.o(SYS_BOOT))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
+<LI>Call Chain = sys_Reset &rArr; bim_main &rArr; bim_select_sec &rArr; bim_check_image_sec_status &rArr; calc_image_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_main (via Veneer)
+</UL>
+
+<P><STRONG><a name="[25]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+
+<P><STRONG><a name="[33]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+
+<P><STRONG><a name="[34]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+
+<P><STRONG><a name="[30]"></a>memcmp</STRONG> (Thumb, 26 bytes, Stack size 12 bytes, memcmp.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = memcmp
+</UL>
+<BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_image_sec_crc
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+</UL>
+
+<P><STRONG><a name="[a]"></a>DataAbort_Exception</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, bim_intc.o(i.DataAbort_Exception))
+<BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_wdt_enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DataAbort (via Veneer)
+</UL>
+
+<P><STRONG><a name="[c]"></a>Irq_Exception</STRONG> (ARM, 32 bytes, Stack size 32 bytes, bim_intc.o(i.Irq_Exception))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = Irq_Exception &rArr; bim_uart_isr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_isr (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IRQ_Handler
+</UL>
+
+<P><STRONG><a name="[e]"></a>PrefetchAbort_Exception</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, bim_intc.o(i.PrefetchAbort_Exception))
+<BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_wdt_enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrefetchAbort (via Veneer)
+</UL>
+
+<P><STRONG><a name="[f]"></a>Reserved_Exception</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, bim_intc.o(i.Reserved_Exception))
+<BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_wdt_enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sys_reserved (via Veneer)
+</UL>
+
+<P><STRONG><a name="[10]"></a>SoftwareInterrupt_Exception</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, bim_intc.o(i.SoftwareInterrupt_Exception))
+<BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_wdt_enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SoftwareInterrupt (via Veneer)
+</UL>
+
+<P><STRONG><a name="[11]"></a>Undefined_Exception</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, bim_intc.o(i.Undefined_Exception))
+<BR><BR>[Calls]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_wdt_enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Undefined (via Veneer)
+</UL>
+
+<P><STRONG><a name="[12]"></a>bim_check_backup_sec_status</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, bim_updataimage.o(i.bim_check_backup_sec_status))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = bim_check_backup_sec_status &rArr; calc_backup_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_printf_null
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+<LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_backup_header
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[17]"></a>bim_check_image_sec_status</STRONG> (Thumb, 194 bytes, Stack size 24 bytes, bim_updataimage.o(i.bim_check_image_sec_status))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = bim_check_image_sec_status &rArr; calc_image_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_image_sec_crc
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_image_header
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_write
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[1c]"></a>bim_erase_backup_sec</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, bim_updataimage.o(i.bim_erase_backup_sec))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = bim_erase_backup_sec &rArr; bim_flash_erase_sector
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[1e]"></a>bim_erase_image_sec</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, bim_updataimage.o(i.bim_erase_image_sec))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = bim_erase_image_sec &rArr; bim_flash_erase_sector
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_printf_null
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[1d]"></a>bim_flash_erase_sector</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, bim_flash.o(i.bim_flash_erase_sector))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = bim_flash_erase_sector
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeKey
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_unlock
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_status
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_start
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_clearKey
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_image_sec
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_backup_sec
+</UL>
+
+<P><STRONG><a name="[2b]"></a>bim_flash_init</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, bim_flash.o(i.bim_flash_init))
+<BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_main
+</UL>
+
+<P><STRONG><a name="[1b]"></a>bim_flash_read</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, bim_flash.o(i.bim_flash_read))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_readword
+</UL>
+<BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_image_sec_crc
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_updata_backup_to_image_sec
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_image_header
+<LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_backup_header
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_image_sec_status
+</UL>
+
+<P><STRONG><a name="[24]"></a>bim_flash_readword</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, bim_flash.o(i.bim_flash_readword))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeKey
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_unlock
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_status
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_start
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_clearKey
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+
+<P><STRONG><a name="[1a]"></a>bim_flash_write</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, bim_flash.o(i.bim_flash_write))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = bim_flash_write &rArr; bim_flash_writeword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeword
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_updata_backup_to_image_sec
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_image_sec_status
+</UL>
+
+<P><STRONG><a name="[26]"></a>bim_flash_writeword</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, bim_flash.o(i.bim_flash_writeword))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = bim_flash_writeword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeKey
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_unlock
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_status
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_start
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_clearKey
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_write
+</UL>
+
+<P><STRONG><a name="[13]"></a>bim_get_psec_backup_header</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, bim_updataimage.o(i.bim_get_psec_backup_header))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = bim_get_psec_backup_header &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_printf_null
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_backup_sec_status
+</UL>
+
+<P><STRONG><a name="[18]"></a>bim_get_psec_image_header</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, bim_updataimage.o(i.bim_get_psec_image_header))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = bim_get_psec_image_header &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_printf
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_image_sec_status
+</UL>
+
+<P><STRONG><a name="[2a]"></a>bim_icu_init</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, bim_app.o(i.bim_icu_init))
+<BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_main
+</UL>
+
+<P><STRONG><a name="[28]"></a>bim_main</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, bim_app.o(i.bim_main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = bim_main &rArr; bim_select_sec &rArr; bim_check_image_sec_status &rArr; calc_image_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_init
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updata_memset32
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_icu_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sys_Reset (via Veneer)
+</UL>
+
+<P><STRONG><a name="[27]"></a>bim_printf</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, bim_uart.o(i.bim_printf))
+<BR><BR>[Called By]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_updata_backup_to_image_sec
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_image_header
+</UL>
+
+<P><STRONG><a name="[2c]"></a>bim_select_sec</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, bim_updataimage.o(i.bim_select_sec))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = bim_select_sec &rArr; bim_check_image_sec_status &rArr; calc_image_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_updata_backup_to_image_sec
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_image_sec
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_backup_sec
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_image_sec_status
+<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_backup_sec_status
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_wdt_enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_main
+</UL>
+
+<P><STRONG><a name="[d]"></a>bim_uart_isr</STRONG> (Thumb, 56 bytes, Stack size 20 bytes, bim_uart.o(i.bim_uart_isr))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = bim_uart_isr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Irq_Exception (via Veneer)
+</UL>
+
+<P><STRONG><a name="[16]"></a>bim_uart_printf_null</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, bim_uart.o(i.bim_uart_printf_null))
+<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_image_sec_crc
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+<LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_backup_header
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_image_sec
+<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_backup_sec_status
+</UL>
+
+<P><STRONG><a name="[15]"></a>bim_uart_write</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, bim_uart.o(i.bim_uart_write))
+<BR><BR>[Called By]<UL><LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_updata_backup_to_image_sec
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_get_psec_image_header
+<LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_image_sec
+<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_erase_backup_sec
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_image_sec_status
+<LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_backup_sec_status
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[2d]"></a>bim_updata_backup_to_image_sec</STRONG> (Thumb, 98 bytes, Stack size 32 bytes, bim_updataimage.o(i.bim_updata_backup_to_image_sec))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = bim_updata_backup_to_image_sec &rArr; bim_flash_write &rArr; bim_flash_writeword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_printf
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_write
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[b]"></a>bim_wdt_enable</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, bim_flash.o(i.bim_wdt_enable))
+<BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Undefined_Exception
+<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SoftwareInterrupt_Exception
+<LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reserved_Exception
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrefetchAbort_Exception
+<LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DataAbort_Exception
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_select_sec
+</UL>
+
+<P><STRONG><a name="[14]"></a>calc_backup_sec_crc</STRONG> (Thumb, 186 bytes, Stack size 80 bytes, bim_updataimage.o(i.calc_backup_sec_crc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = calc_backup_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memcmp
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;make_crc32_table
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;make_crc32
+<LI><a href="#[15]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_write
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_printf_null
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_printf
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_backup_sec_status
+</UL>
+
+<P><STRONG><a name="[19]"></a>calc_image_sec_crc</STRONG> (Thumb, 170 bytes, Stack size 80 bytes, bim_updataimage.o(i.calc_image_sec_crc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = calc_image_sec_crc &rArr; bim_flash_read &rArr; bim_flash_readword
+</UL>
+<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memcmp
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;make_crc32_table
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;make_crc32
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_uart_printf_null
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_check_image_sec_status
+</UL>
+
+<P><STRONG><a name="[2f]"></a>make_crc32</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, bim_uart.o(i.make_crc32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = make_crc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_image_sec_crc
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+</UL>
+
+<P><STRONG><a name="[2e]"></a>make_crc32_table</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, bim_uart.o(i.make_crc32_table))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = make_crc32_table
+</UL>
+<BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_image_sec_crc
+<LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calc_backup_sec_crc
+</UL>
+
+<P><STRONG><a name="[29]"></a>updata_memset32</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, bim_app.o(i.updata_memset32))
+<BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_main
+</UL>
+<P>
+<H3>
+Local Symbols
+</H3>
+<P><STRONG><a name="[32]"></a>[Anonymous Symbol]</STRONG> (ARM, 0 bytes, Stack size 0 bytes, bim_vectors.o(ABSOLUTE))
+<BR><BR>[Called By]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FIQ_Handler
+</UL>
+
+<P><STRONG><a name="[31]"></a>[Anonymous Symbol]</STRONG> (ARM, 0 bytes, Stack size 0 bytes, bim_vectors.o(ABSOLUTE))
+<BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IRQ_Handler
+</UL>
+
+<P><STRONG><a name="[1]"></a>Undefined</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Undefined_Exception (via Veneer)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[2]"></a>SoftwareInterrupt</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Calls]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SoftwareInterrupt_Exception (via Veneer)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[3]"></a>PrefetchAbort</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Calls]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PrefetchAbort_Exception (via Veneer)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[4]"></a>DataAbort</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Calls]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DataAbort_Exception (via Veneer)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[6]"></a>IRQ_Handler</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52 + Unknown Stack Size
+<LI>Call Chain = IRQ_Handler &rArr; Irq_Exception &rArr; bim_uart_isr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+<LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Irq_Exception
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[7]"></a>FIQ_Handler</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;[Anonymous Symbol]
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[5]"></a>sys_reserved</STRONG> (ARM, 0 bytes, Stack size unknown bytes, bim_vectors.o(SYS_BOOT))
+<BR><BR>[Calls]<UL><LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reserved_Exception (via Veneer)
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> bim_vectors.o(SYS_BOOT)
+</UL>
+<P><STRONG><a name="[23]"></a>bim_flash_clearKey</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, bim_flash.o(i.bim_flash_clearKey))
+<BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeword
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_readword
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+
+<P><STRONG><a name="[21]"></a>bim_flash_start</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, bim_flash.o(i.bim_flash_start))
+<BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeword
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_readword
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+
+<P><STRONG><a name="[22]"></a>bim_flash_status</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, bim_flash.o(i.bim_flash_status))
+<BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeword
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_readword
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+
+<P><STRONG><a name="[20]"></a>bim_flash_unlock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, bim_flash.o(i.bim_flash_unlock))
+<BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeword
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_readword
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+
+<P><STRONG><a name="[1f]"></a>bim_flash_writeKey</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, bim_flash.o(i.bim_flash_writeKey))
+<BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_writeword
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_readword
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bim_flash_erase_sector
+</UL>
+<P>
+<H3>
+Undefined Global Symbols
+</H3><HR></body></html>

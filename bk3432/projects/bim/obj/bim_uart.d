@@ -1,0 +1,13 @@
+.\obj\bim_uart.o: app\bim_uart.c
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\obj\bim_uart.o: ..\..\sdk\plactform\driver\timer\timer.h
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\obj\bim_uart.o: app\bim_uart.h
+.\obj\bim_uart.o: ..\..\sdk\plactform\arch\BK3432_reg.h
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\obj\bim_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\obj\bim_uart.o: app\bim_app.h
+.\obj\bim_uart.o: app\bim_flash.h

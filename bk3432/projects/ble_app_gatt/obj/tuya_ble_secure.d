@@ -1,0 +1,11 @@
+.\obj\tuya_ble_secure.o: app\tuya_ble_sdk\tuya_ble_secure.c
+.\obj\tuya_ble_secure.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\obj\tuya_ble_secure.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\tuya_ble_secure.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\obj\tuya_ble_secure.o: app\tuya_ble_sdk\tuya_ble_type.h
+.\obj\tuya_ble_secure.o: app\tuya_ble_sdk\tuya_ble_stdlib.h
+.\obj\tuya_ble_secure.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\tuya_ble_secure.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\obj\tuya_ble_secure.o: app\tuya_ble_sdk\tuya_ble_secure.h
+.\obj\tuya_ble_secure.o: app\tuya_ble_sdk\tuya_ble_aes.h
+.\obj\tuya_ble_secure.o: app\tuya_ble_sdk\tuya_ble_md5.h

@@ -1,0 +1,12 @@
+--cpu ARM9E
+".\obj\bim_app.o"
+".\obj\bim_intc.o"
+".\obj\bim_vectors.o"
+".\obj\bim_handlers.o"
+".\obj\bim_flash.o"
+".\obj\bim_updataimage.o"
+".\obj\bim_uart.o"
+--library_type=microlib --scatter ".\lnk\link_bim.txt"
+--entry sys_Reset --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\lst\bk3432_ble_bim.map" -o .\obj\bk3432_ble_bim.axf

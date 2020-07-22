@@ -1,0 +1,1356 @@
+L 1 "app\bim_app.c"
+N
+N
+N#include <stdint.h>
+L 1 "C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h" 1
+N/* Copyright (C) ARM Ltd., 1999,2014 */
+N/* All rights reserved */
+N
+N/*
+N * RCS $Revision$
+N * Checkin $Date$
+N * Revising $Author: agrant $
+N */
+N
+N#ifndef __stdint_h
+N#define __stdint_h
+N#define __ARMCLIB_VERSION 5060037
+N
+N  #ifdef __INT64_TYPE__
+S    /* armclang predefines '__INT64_TYPE__' and '__INT64_C_SUFFIX__' */
+S    #define __INT64 __INT64_TYPE__
+N  #else
+N    /* armcc has builtin '__int64' which can be used in --strict mode */
+N    #define __INT64 __int64
+N    #define __INT64_C_SUFFIX__ ll
+N  #endif
+N  #define __PASTE2(x, y) x ## y
+N  #define __PASTE(x, y) __PASTE2(x, y)
+N  #define __INT64_C(x)  __ESCAPE__(__PASTE(x, __INT64_C_SUFFIX__))
+N  #define __UINT64_C(x)  __ESCAPE__(__PASTE(x ## u, __INT64_C_SUFFIX__))
+N  #if defined(__clang__) || (defined(__ARMCC_VERSION) && !defined(__STRICT_ANSI__))
+X  #if 0L || (1L && !0L)
+N    /* armclang and non-strict armcc allow 'long long' in system headers */
+N    #define __LONGLONG long long
+N  #else
+S    /* strict armcc has '__int64' */
+S    #define __LONGLONG __int64
+N  #endif
+N
+N  #ifndef __STDINT_DECLS
+N  #define __STDINT_DECLS
+N
+N    #undef __CLIBNS
+N
+N    #ifdef __cplusplus
+S      namespace std {
+S          #define __CLIBNS std::
+S          extern "C" {
+N    #else
+N      #define __CLIBNS
+N    #endif  /* __cplusplus */
+N
+N
+N/*
+N * 'signed' is redundant below, except for 'signed char' and if
+N * the typedef is used to declare a bitfield.
+N */
+N
+N    /* 7.18.1.1 */
+N
+N    /* exact-width signed integer types */
+Ntypedef   signed          char int8_t;
+Ntypedef   signed short     int int16_t;
+Ntypedef   signed           int int32_t;
+Ntypedef   signed       __INT64 int64_t;
+Xtypedef   signed       __int64 int64_t;
+N
+N    /* exact-width unsigned integer types */
+Ntypedef unsigned          char uint8_t;
+Ntypedef unsigned short     int uint16_t;
+Ntypedef unsigned           int uint32_t;
+Ntypedef unsigned       __INT64 uint64_t;
+Xtypedef unsigned       __int64 uint64_t;
+N
+N    /* 7.18.1.2 */
+N
+N    /* smallest type of at least n bits */
+N    /* minimum-width signed integer types */
+Ntypedef   signed          char int_least8_t;
+Ntypedef   signed short     int int_least16_t;
+Ntypedef   signed           int int_least32_t;
+Ntypedef   signed       __INT64 int_least64_t;
+Xtypedef   signed       __int64 int_least64_t;
+N
+N    /* minimum-width unsigned integer types */
+Ntypedef unsigned          char uint_least8_t;
+Ntypedef unsigned short     int uint_least16_t;
+Ntypedef unsigned           int uint_least32_t;
+Ntypedef unsigned       __INT64 uint_least64_t;
+Xtypedef unsigned       __int64 uint_least64_t;
+N
+N    /* 7.18.1.3 */
+N
+N    /* fastest minimum-width signed integer types */
+Ntypedef   signed           int int_fast8_t;
+Ntypedef   signed           int int_fast16_t;
+Ntypedef   signed           int int_fast32_t;
+Ntypedef   signed       __INT64 int_fast64_t;
+Xtypedef   signed       __int64 int_fast64_t;
+N
+N    /* fastest minimum-width unsigned integer types */
+Ntypedef unsigned           int uint_fast8_t;
+Ntypedef unsigned           int uint_fast16_t;
+Ntypedef unsigned           int uint_fast32_t;
+Ntypedef unsigned       __INT64 uint_fast64_t;
+Xtypedef unsigned       __int64 uint_fast64_t;
+N
+N    /* 7.18.1.4 integer types capable of holding object pointers */
+N#if __sizeof_ptr == 8
+X#if 4 == 8
+Stypedef   signed       __INT64 intptr_t;
+Stypedef unsigned       __INT64 uintptr_t;
+N#else
+Ntypedef   signed           int intptr_t;
+Ntypedef unsigned           int uintptr_t;
+N#endif
+N
+N    /* 7.18.1.5 greatest-width integer types */
+Ntypedef   signed     __LONGLONG intmax_t;
+Xtypedef   signed     long long intmax_t;
+Ntypedef unsigned     __LONGLONG uintmax_t;
+Xtypedef unsigned     long long uintmax_t;
+N
+N
+N#if !defined(__cplusplus) || defined(__STDC_LIMIT_MACROS)
+X#if !0L || 0L
+N
+N    /* 7.18.2.1 */
+N
+N    /* minimum values of exact-width signed integer types */
+N#define INT8_MIN                   -128
+N#define INT16_MIN                -32768
+N#define INT32_MIN          (~0x7fffffff)   /* -2147483648 is unsigned */
+N#define INT64_MIN  __INT64_C(~0x7fffffffffffffff) /* -9223372036854775808 is unsigned */
+N
+N    /* maximum values of exact-width signed integer types */
+N#define INT8_MAX                    127
+N#define INT16_MAX                 32767
+N#define INT32_MAX            2147483647
+N#define INT64_MAX  __INT64_C(9223372036854775807)
+N
+N    /* maximum values of exact-width unsigned integer types */
+N#define UINT8_MAX                   255
+N#define UINT16_MAX                65535
+N#define UINT32_MAX           4294967295u
+N#define UINT64_MAX __UINT64_C(18446744073709551615)
+N
+N    /* 7.18.2.2 */
+N
+N    /* minimum values of minimum-width signed integer types */
+N#define INT_LEAST8_MIN                   -128
+N#define INT_LEAST16_MIN                -32768
+N#define INT_LEAST32_MIN          (~0x7fffffff)
+N#define INT_LEAST64_MIN  __INT64_C(~0x7fffffffffffffff)
+N
+N    /* maximum values of minimum-width signed integer types */
+N#define INT_LEAST8_MAX                    127
+N#define INT_LEAST16_MAX                 32767
+N#define INT_LEAST32_MAX            2147483647
+N#define INT_LEAST64_MAX  __INT64_C(9223372036854775807)
+N
+N    /* maximum values of minimum-width unsigned integer types */
+N#define UINT_LEAST8_MAX                   255
+N#define UINT_LEAST16_MAX                65535
+N#define UINT_LEAST32_MAX           4294967295u
+N#define UINT_LEAST64_MAX __UINT64_C(18446744073709551615)
+N
+N    /* 7.18.2.3 */
+N
+N    /* minimum values of fastest minimum-width signed integer types */
+N#define INT_FAST8_MIN           (~0x7fffffff)
+N#define INT_FAST16_MIN          (~0x7fffffff)
+N#define INT_FAST32_MIN          (~0x7fffffff)
+N#define INT_FAST64_MIN  __INT64_C(~0x7fffffffffffffff)
+N
+N    /* maximum values of fastest minimum-width signed integer types */
+N#define INT_FAST8_MAX             2147483647
+N#define INT_FAST16_MAX            2147483647
+N#define INT_FAST32_MAX            2147483647
+N#define INT_FAST64_MAX  __INT64_C(9223372036854775807)
+N
+N    /* maximum values of fastest minimum-width unsigned integer types */
+N#define UINT_FAST8_MAX            4294967295u
+N#define UINT_FAST16_MAX           4294967295u
+N#define UINT_FAST32_MAX           4294967295u
+N#define UINT_FAST64_MAX __UINT64_C(18446744073709551615)
+N
+N    /* 7.18.2.4 */
+N
+N    /* minimum value of pointer-holding signed integer type */
+N#if __sizeof_ptr == 8
+X#if 4 == 8
+S#define INTPTR_MIN INT64_MIN
+N#else
+N#define INTPTR_MIN INT32_MIN
+N#endif
+N
+N    /* maximum value of pointer-holding signed integer type */
+N#if __sizeof_ptr == 8
+X#if 4 == 8
+S#define INTPTR_MAX INT64_MAX
+N#else
+N#define INTPTR_MAX INT32_MAX
+N#endif
+N
+N    /* maximum value of pointer-holding unsigned integer type */
+N#if __sizeof_ptr == 8
+X#if 4 == 8
+S#define UINTPTR_MAX UINT64_MAX
+N#else
+N#define UINTPTR_MAX UINT32_MAX
+N#endif
+N
+N    /* 7.18.2.5 */
+N
+N    /* minimum value of greatest-width signed integer type */
+N#define INTMAX_MIN  __ESCAPE__(~0x7fffffffffffffffll)
+N
+N    /* maximum value of greatest-width signed integer type */
+N#define INTMAX_MAX  __ESCAPE__(9223372036854775807ll)
+N
+N    /* maximum value of greatest-width unsigned integer type */
+N#define UINTMAX_MAX __ESCAPE__(18446744073709551615ull)
+N
+N    /* 7.18.3 */
+N
+N    /* limits of ptrdiff_t */
+N#if __sizeof_ptr == 8
+X#if 4 == 8
+S#define PTRDIFF_MIN INT64_MIN
+S#define PTRDIFF_MAX INT64_MAX
+N#else
+N#define PTRDIFF_MIN INT32_MIN
+N#define PTRDIFF_MAX INT32_MAX
+N#endif
+N
+N    /* limits of sig_atomic_t */
+N#define SIG_ATOMIC_MIN (~0x7fffffff)
+N#define SIG_ATOMIC_MAX   2147483647
+N
+N    /* limit of size_t */
+N#if __sizeof_ptr == 8
+X#if 4 == 8
+S#define SIZE_MAX UINT64_MAX
+N#else
+N#define SIZE_MAX UINT32_MAX
+N#endif
+N
+N    /* limits of wchar_t */
+N    /* NB we have to undef and redef because they're defined in both
+N     * stdint.h and wchar.h */
+N#undef WCHAR_MIN
+N#undef WCHAR_MAX
+N
+N#if defined(__WCHAR32) || (defined(__ARM_SIZEOF_WCHAR_T) && __ARM_SIZEOF_WCHAR_T == 4)
+X#if 0L || (0L && __ARM_SIZEOF_WCHAR_T == 4)
+S  #define WCHAR_MIN   0
+S  #define WCHAR_MAX   0xffffffffU
+N#else
+N  #define WCHAR_MIN   0
+N  #define WCHAR_MAX   65535
+N#endif
+N
+N    /* limits of wint_t */
+N#define WINT_MIN (~0x7fffffff)
+N#define WINT_MAX 2147483647
+N
+N#endif /* __STDC_LIMIT_MACROS */
+N
+N#if !defined(__cplusplus) || defined(__STDC_CONSTANT_MACROS)
+X#if !0L || 0L
+N
+N    /* 7.18.4.1 macros for minimum-width integer constants */
+N#define INT8_C(x)   (x)
+N#define INT16_C(x)  (x)
+N#define INT32_C(x)  (x)
+N#define INT64_C(x)  __INT64_C(x)
+N
+N#define UINT8_C(x)  (x ## u)
+N#define UINT16_C(x) (x ## u)
+N#define UINT32_C(x) (x ## u)
+N#define UINT64_C(x) __UINT64_C(x)
+N
+N    /* 7.18.4.2 macros for greatest-width integer constants */
+N#define INTMAX_C(x)  __ESCAPE__(x ## ll)
+N#define UINTMAX_C(x) __ESCAPE__(x ## ull)
+N
+N#endif /* __STDC_CONSTANT_MACROS */
+N
+N    #ifdef __cplusplus
+S         }  /* extern "C" */
+S      }  /* namespace std */
+N    #endif /* __cplusplus */
+N  #endif /* __STDINT_DECLS */
+N
+N  #ifdef __cplusplus
+S    #ifndef __STDINT_NO_EXPORTS
+S      using ::std::int8_t;
+S      using ::std::int16_t;
+S      using ::std::int32_t;
+S      using ::std::int64_t;
+S      using ::std::uint8_t;
+S      using ::std::uint16_t;
+S      using ::std::uint32_t;
+S      using ::std::uint64_t;
+S      using ::std::int_least8_t;
+S      using ::std::int_least16_t;
+S      using ::std::int_least32_t;
+S      using ::std::int_least64_t;
+S      using ::std::uint_least8_t;
+S      using ::std::uint_least16_t;
+S      using ::std::uint_least32_t;
+S      using ::std::uint_least64_t;
+S      using ::std::int_fast8_t;
+S      using ::std::int_fast16_t;
+S      using ::std::int_fast32_t;
+S      using ::std::int_fast64_t;
+S      using ::std::uint_fast8_t;
+S      using ::std::uint_fast16_t;
+S      using ::std::uint_fast32_t;
+S      using ::std::uint_fast64_t;
+S      using ::std::intptr_t;
+S      using ::std::uintptr_t;
+S      using ::std::intmax_t;
+S      using ::std::uintmax_t;
+S    #endif
+N  #endif /* __cplusplus */
+N
+N#undef __INT64
+N#undef __LONGLONG
+N
+N#endif /* __stdint_h */
+N
+N/* end of stdint.h */
+L 4 "app\bim_app.c" 2
+N#include "bim_flash.h"
+L 1 "app\bim_flash.h" 1
+N
+N#ifndef _BIM_FLASH_H_
+N#define _BIM_FLASH_H_
+N
+N#include <stdint.h>
+N#include "BK3432_reg.h"
+L 1 "..\..\sdk\plactform\arch\BK3432_reg.h" 1
+N
+N#ifndef _BK3432_REG_H_
+N#define _BK3432_REG_H_
+N
+N
+N
+N/////////////////////////////////////////////////////////////////////////////
+N//memory layout
+N/////////////////////////////////////////////////////////////////////////////
+N#define ROM_START_ADDR           0x00000000
+N#define RAM_START_ADDR           0x00400000
+N
+N#define AHB0_ICU_BASE            0x00800000
+N#define AHB1_XVR_BASE            0x00801400
+N#define AHB_FLASH_BASE					 0x00802000
+N#define AHB6_AHB2APB_BASE        0x00806000
+N#define AHB10_RW_REG_BASE        0x00810000
+N#define AHB14_RW_EM_BASE         0x00814000
+N
+N#define APB0_WDT_BASE            0x00806000
+N#define APB1_PWM_BASE            0x00806100
+N#define APB2_SPI_BASE            0x00806200
+N#define APB3_UART_BASE           0x00806300
+N#define APB4_I2C_BASE            0x00806400
+N#define APB5_GPIO_BASE           0x00806500
+N#define APB6_RTC_BASE            0x00806600
+N#define APB7_ADC_BASE            0x00806700
+N
+N#define APB_BLE_BASE             0x00802000 
+N
+N#define p_AHB0_ICU_BASE          (*((volatile unsigned long *)  0x00800000))
+N#define p_AHB1_XVR_BASE          (*((volatile unsigned long *)  0x00801000))
+N#define p_AHB3_MFC_BASE          (*((volatile unsigned long *)  0x00803000))
+N#define p_AHB6_AHB2APB_BASE      (*((volatile unsigned long *)  0x00806000))
+N#define p_AHB1_RW_REG_BASE      (*((volatile unsigned long *)  0x00810000))
+N#define p_AHB1_RW_EM_BASE       (*((volatile unsigned long *)  0x00814000))
+N    
+N#define p_APB0_WDT_BASE          (*((volatile unsigned long *)  0x00806000))
+N#define p_APB1_PWM_BASE          (*((volatile unsigned long *)  0x00806100))
+N#define p_APB2_SPI_BASE          (*((volatile unsigned long *)  0x00806200))
+N#define p_APB3_UART_BASE         (*((volatile unsigned long *)  0x00806300))
+N#define p_APB4_I2C_BASE          (*((volatile unsigned long *)  0x00806400))
+N#define p_APB5_GPIO_BASE         (*((volatile unsigned long *)  0x00806500))
+N#define p_APB6_RTC_BASE          (*((volatile unsigned long *)  0x00806600))
+N#define p_APB7_ADC_BASE          (*((volatile unsigned long *)  0x00806700))
+N
+N/////////////////////////////////////////////////////////////////////////////
+N//register definition
+N/////////////////////////////////////////////////////////////////////////////
+N//ICU register definitions
+N#define REG_AHB0_ICU_CLKSRCSEL             (*((volatile unsigned long *)   0x00800000))
+N#define SET_CLK_SEL_32K                    0x0
+N#define SET_CLK_SEL_16M                    0x1
+N#define SET_CLK_SEL_48M                    0x3
+N
+N#define REG_AHB0_ICU_CORECLKCON            (*((volatile unsigned long *)   0x00800004))
+N#define BIT_CORE_CLK_DIV                   1
+N
+N#define REG_AHB0_ICU_ADCCLKCON             (*((volatile unsigned long *)   0x00800008))
+N#define REG_AHB0_ICU_UARTCLKCON            (*((volatile unsigned long *)   0x0080000c))
+N#define REG_AHB0_ICU_I2CCLKCON             (*((volatile unsigned long *)   0x00800010))
+N#define REG_AHB0_ICU_SPICLKCON             (*((volatile unsigned long *)   0x00800014))
+N#define REG_AHB0_ICU_BLECLKCON             (*((volatile unsigned long *)   0x00800018))
+N#define REG_AHB0_ICU_WDTCLKCON             (*((volatile unsigned long *)   0x0080001c))
+N#define REG_AHB0_ICU_RNGCLKCON             (*((volatile unsigned long *)   0x00800020))
+N#define REG_AHB0_ICU_PWMCLKCON             (*((volatile unsigned long *)   0x00800024))
+N#define BIT_PWM_CLK_SEL                    1
+N#define SET_PWM_CLK_SEL                    (0x1 << BIT_PWM_CLK_SEL)
+N
+N#define REG_AHB0_ICU_RTCCLKCON             (*((volatile unsigned long *)   0x00800028))
+N
+N#define REG_AHB0_ICU_LPO_CLK_ON            (*((volatile unsigned long *)   0x0080002C))
+N
+N#define REG_AHB0_ICU_CLK32K_SEL            (*((volatile unsigned long *)   0x00800030))
+N
+N#define REG_AHB0_ICU_ANA_CTL          	   (*((volatile unsigned long *)   0x00800034))
+N#define REG_AHB0_ICU_CPU_STATUS            (*((volatile unsigned long *)   0x00800038))
+N#define REG_AHB0_ICU_INT_ENABLE            (*((volatile unsigned long *)   0x00800040))
+N#define REG_AHB0_ICU_IRQ_ENABLE            (*((volatile unsigned long *)   0x00800044))
+N#define REG_AHB0_ICU_INT_FLAG              (*((volatile unsigned long *)   0x00800048))
+N#define REG_AHB0_ICU_FLASH                 (*((volatile unsigned long *)   0x0080004c))
+N#define REG_AHB0_ICU_ANALOG_MODE           (*((volatile unsigned long *)   0x00800050))
+N#define REG_AHB0_ICU_ANALOG0_PWD           (*((volatile unsigned long *)   0x00800054))
+N#define REG_AHB0_ICU_ANALOG1_PWD           (*((volatile unsigned long *)   0x00800058))
+N#define REG_AHB0_ICU_DIGITAL_PWD           (*((volatile unsigned long *)   0x0080005c))
+N
+N#define REG_AHB0_ICU_TIME_COUNT           (*((volatile unsigned long *)   0x0080007C))
+N
+N
+N
+N
+N//Digital PWD Bit
+N#define BIT_ANA_TEST_PIN                   5
+N#define BIT_BB_TEST_PIN                    4
+N#define BIT_CLK16M_PWD                     3
+N#define BIT_HP_LDO_PWD                     2
+N#define BIT_CLK48M_PWD                     1
+N#define BIT_CB_BAIS_PWD                    0
+N#define SET_ANA_TEST_PIN                   (0x01 << BIT_ANA_TEST_PIN) 
+N#define SET_BB_TEST_PIN                    (0x01 << BIT_BB_TEST_PIN) 
+N#define SET_CLK16M_PWD                     (0x01 << BIT_CLK16M_PWD ) // 3
+N#define SET_HP_LDO_PWD                     (0x01 << BIT_HP_LDO_PWD ) // 2
+N#define SET_CLK48M_PWD                     (0x01 << BIT_CLK48M_PWD ) // 1
+N#define SET_CB_BAIS_PWD                    (0x01 << BIT_CB_BAIS_PWD) // 0
+N
+N
+N// DEEP_SLEEP0 is GPIO-A to GPIO-D deep sleep wake-en
+N// DEEP_SLEEP1 is GPIO-E deep sleep wake-en and deep sleep word
+N#define REG_AHB0_ICU_DEEP_SLEEP0           (*((volatile unsigned long *)   0x00800060))
+N#define REG_AHB0_ICU_DEEP_SLEEP1           (*((volatile unsigned long *)   0x00800064))
+N#define BIT_GPIOA_WAKE_EN                  0
+N#define BIT_GPIOB_WAKE_EN                  8
+N#define BIT_GPIOC_WAKE_EN                  16
+N#define BIT_GPIOD_WAKE_EN                  24
+N#define BIT_GPIOE_WAKE_EN                  0
+N#define BIT_DEEP_SLEEP_WORD                16
+N#define SET_DEEP_SLEEP_WORD                (0xFFFF << BIT_DEEP_SLEEP_WORD)
+N
+N#define REG_AHB0_ICU_RC32K_CONFG           (*((volatile unsigned long *)   0x00800068))
+N#define REG_AHB0_ICU_SLEEP_TIME            (*((volatile unsigned long *)   0x0080006C))
+N#define BIT_MANU_FIN                       8
+N#define BIT_MANU_CIN                       3
+N#define BIT_MANU_EN                        2
+N#define BIT_CALI_MODE                      1
+N#define BIT_SPI_TRIG                       0
+N#define SET_MANU_FIN                       (0x1FF<< BIT_MANU_FIN )
+N#define SET_MANU_CIN                       (0x1F << BIT_MANU_CIN )
+N#define SET_MANU_EN                        (0x1  << BIT_MANU_EN  )
+N#define SET_CALI_MODE                      (0x1  << BIT_CALI_MODE)
+N#define SET_SPI_TRIG                       (0x1  << BIT_SPI_TRIG )
+N
+N
+N
+N//FIQ
+N#define INT_STATUS_PWM0_bit     (0x01<<0)
+N#define INT_STATUS_LBD_bit      (0x01<<10)
+N#define INT_STATUS_BLE_bit      (0x01<<15)
+N//IRQ
+N#define INT_STATUS_UART1_bit     (0x01<< 16)
+N#define INT_STATUS_RTC_bit      (0x01<<12)
+N#define INT_STATUS_RNG_bit      (0x01<<11)
+N#define INT_STATUS_GPIO_bit     (0x01<< 9)
+N#define INT_STATUS_ADC_bit      (0x01<< 8)
+N#define INT_STATUS_I2C_bit      (0x01<< 7)
+N#define INT_STATUS_SPI_bit      (0x01<< 6)
+N#define INT_STATUS_UART_bit     (0x01<< 5)
+N#define INT_STATUS_PWM4_bit     (0x01<< 4)
+N#define INT_STATUS_PWM3_bit     (0x01<< 3)
+N#define INT_STATUS_PWM2_bit     (0x01<< 2)
+N#define INT_STATUS_PWM1_bit     (0x01<< 1)
+N
+N#define INT_IRQ_BIT             (0x01<<0)
+N#define FIQ_IRQ_BIT             (0x01<<1)
+N
+N//RF register definitions
+N//=====================================================================================
+N
+N
+N
+N//=====================================================================================
+N//MFC
+N//=====================================================================================
+N#define REG_AHB3_MFC_KEYWORD             (*((volatile unsigned long *)   0x00803000))
+N#define REG_AHB3_MFC_CONTROL             (*((volatile unsigned long *)   0x00803004))
+N#define REG_AHB3_MFC_ADDR                (*((volatile unsigned long *)   0x00803008))
+N#define REG_AHB3_MFC_DATA                (*((volatile unsigned long *)   0x0080300C))
+N#define REG_AHB3_MFC_WP0                 (*((volatile unsigned long *)   0x00803010))
+N#define REG_AHB3_MFC_WP1                 (*((volatile unsigned long *)   0x00803014))
+N#define REG_AHB3_MFC_WP2                 (*((volatile unsigned long *)   0x00803018))
+N#define REG_AHB3_MFC_WP3                 (*((volatile unsigned long *)   0x0080301c))
+N
+N//// MFC INTRN ////
+N#define MFC_CONTROL_READ                (0x00)
+N#define MFC_CONTROL_WRITE               (0x01<<2)
+N#define MFC_CONTROL_SECT_ERASE          (0x02<<2)
+N#define MFC_CONTROL_BLOCK_ERASE         (0x03<<2)
+N#define MFC_CONTROL_CHIP_ERASE          (0x07<<2)
+N#define MFC_CONTROL_MAIN_SPACE          (0x00<<5)
+N#define MFC_CONTROL_NVR_SPACE           (0x01<<5)
+N#define MFC_CONTROL_RDN_SPACE           (0x02<<5)
+N
+N
+N//WDT
+N#define REG_APB0_WDT_CFG                (*((volatile unsigned long *)   0x00806000))
+N
+N
+N//=====================================================================================
+N//PWM
+N//=====================================================================================
+N#define REG_APB1_PWM_0                  (*((volatile unsigned long *)   0x00806100))
+N#define REG_APB1_PWM_1                  (*((volatile unsigned long *)   0x00806104))
+N#define REG_APB1_PWM_2                  (*((volatile unsigned long *)   0x00806108))
+N#define REG_APB1_PWM_3                  (*((volatile unsigned long *)   0x0080610c))
+N#define REG_APB1_PWM_4                  (*((volatile unsigned long *)   0x00806110))
+N#define BIT_PWM_MODE_MIDDLE             0
+N#define BIT_TIMER_MODE_START            16
+N#define SET_TIMER_MODE_START            (0xFFFF << BIT_TIMER_MODE_START)
+N
+N#define REG_APB1_PWM_CFG                (*((volatile unsigned long *)   0x00806114))
+N#define PT0_MODE_BIT                    0
+N#define PT1_MODE_BIT                    1
+N#define PT2_MODE_BIT                    2
+N#define PT3_MODE_BIT                    3
+N#define PT4_MODE_BIT                    4
+N#define PT_ENABLE_BIT                   7
+N#define PT_CLK_DIV_BIT                  8
+N#define PT0_INT_FLAG                    (1<<16)
+N#define PT1_INT_FLAG                    (1<<17)
+N#define PT2_INT_FLAG                    (1<<18)
+N#define PT3_INT_FLAG                    (1<<19)
+N#define PT4_INT_FLAG                    (1<<20)
+N#define SET_PT_CLK_DIV                  (0xF << PT_CLK_DIV_BIT)
+N
+N
+N// PWM Test Firmware Definition
+N#define BK_TIMER_MODE       0
+N#define BK_PWM_MODE         1
+N
+N#define PWM_CLK_SEL32K      0
+N#define PWM_CLK_SEL16M      1
+N
+N//=====================================================================================
+N
+N
+N//SPI
+N#define REG_APB2_SPI_CTRL               (*((volatile unsigned long *)   0x00806200))
+N#define REG_APB2_SPI_STAT               (*((volatile unsigned long *)   0x00806204))
+N#define REG_APB2_SPI_DAT                (*((volatile unsigned long *)   0x00806208))
+N
+N//=====================================================================================
+N// UART  
+N//=====================================================================================
+N#define REG_APB3_UART_CFG               (*((volatile unsigned long *)   0x00806300))
+N#define REG_APB3_UART_FIFO_CFG    (*((volatile unsigned long *)   0x00806304))
+N#define REG_APB3_UART_FIFO_STAT        (*((volatile unsigned long *)   0x00806308))
+N#define REG_APB3_UART_PORT              (*((volatile unsigned long *)   0x0080630C))
+N#define REG_APB3_UART_INT_ENABLE        (*((volatile unsigned long *)   0x00806310))
+N#define REG_APB3_UART_INT_STAT          (*((volatile unsigned long *)   0x00806314))
+N#define REG_APB3_UART_FLOW_CFG         (*((volatile unsigned long *)   0x00806318))
+N#define REG_APB3_UART_WAKE_CFG         (*((volatile unsigned long *)   0x0080631c))
+N
+N#define REG_APB3_UART2_CFG               (*((volatile unsigned long *)   0x00806a00))
+N#define REG_APB3_UART2_FIFO_CFG    (*((volatile unsigned long *)   0x00806a04))
+N#define REG_APB3_UART2_FIFO_STAT        (*((volatile unsigned long *)   0x00806a08))
+N#define REG_APB3_UART2_PORT              (*((volatile unsigned long *)   0x00806a0C))
+N#define REG_APB3_UART2_INT_ENABLE        (*((volatile unsigned long *)   0x00806a10))
+N#define REG_APB3_UART2_INT_STAT          (*((volatile unsigned long *)   0x00806a14))
+N#define REG_APB3_UART2_FLOW_CFG         (*((volatile unsigned long *)   0x00806a18))
+N#define REG_APB3_UART2_WAKE_CFG         (*((volatile unsigned long *)   0x00806a1c))
+N	
+N
+N#define BIT_UART_TX_ENABLE              0
+N#define BIT_UART_RX_ENABLE              1
+N#define BIT_UART_IRDA                   2
+N#define BIT_UART_LEN                    3
+N#define BIT_UART_PAR_EN                 5
+N#define BIT_UART_PAR_MODE               6
+N#define BIT_UART_STOP_LEN               7
+N#define BIT_UART_CLK_DIVID              8
+N#define SET_UART_TX_ENABLE              (0x1 << BIT_UART_TX_ENABLE)
+N#define SET_UART_TX_DISABLE             (0x0 << BIT_UART_TX_ENABLE)
+N#define SET_UART_RX_ENABLE              (0x1 << BIT_UART_RX_ENABLE)
+N#define SET_UART_RX_DISABLE             (0x0 << BIT_UART_RX_ENABLE)
+N#define SET_UART_IRDA                   (0x1 << BIT_UART_IRDA     )
+N#define SET_UART_LEN                    (0x3 << BIT_UART_LEN      )
+N#define SET_UART_PAR_EN                 (0x1 << BIT_UART_PAR_EN   )
+N#define SET_UART_PAR_MODE               (0x1 << BIT_UART_PAR_MODE )
+N#define SET_UART_STOP_LEN               (0x1 << BIT_UART_STOP_LEN )
+N#define SET_UART_CLK_DIVID              (0x1FFF<<BIT_UART_CLK_DIVID)
+N
+N#define BIT_TX_FIFO_THRESHOLD           0
+N#define BIT_RX_FIFO_THRESHOLD           8
+N#define BIT_STOP_DETECT_TIME            16
+N#define SET_TX_FIFO_THRESHOLD           (0xFF<< BIT_TX_FIFO_THRESHOLD)
+N#define SET_RX_FIFO_THRESHOLD           (0xFF<< BIT_RX_FIFO_THRESHOLD)
+N#define SET_STOP_DETECT_TIME            (0x3 << BIT_STOP_DETECT_TIME)
+N
+N
+N#define BIT_TX_FIFO_COUNT               0
+N#define BIT_RX_FIFO_COUNT               8
+N#define SET_TX_FIFO_COUNT               (0xFF<< BIT_TX_FIFO_COUNT)
+N#define SET_RX_FIFO_COUNT               (0xFF<< BIT_RX_FIFO_COUNT)
+N
+N#define BIT_UART_TX_FIFO_DIN            0
+N#define BIT_UART_RX_FIFO_DOUT           8
+N#define SET_UART_TX_FIFO_DIN            (0xFF<< BIT_UART_TX_FIFO_DIN )
+N#define SET_UART_RX_FIFO_DOUT           (0xFF<< BIT_UART_RX_FIFO_DOUT)
+N
+N#define BIT_TX_FIFO_NEED_WRITE_EN       0
+N#define BIT_RX_FIFO_NEED_READ_EN        1
+N#define BIT_RX_FIFO_OVER_FLOW_EN        2
+N#define BIT_UART_RX_PARITY_ERR_EN       3
+N#define BIT_UART_RX_STOP_ERR_EN         4
+N#define BIT_UART_TX_STOP_END_EN         5
+N#define BIT_UART_RX_STOP_END_EN         6
+N#define BIT_UART_RXD_WAKEUP_EN          7
+N#define SET_TX_FIFO_NEED_WRITE_EN       (0x1 << BIT_TX_FIFO_NEED_WRITE_EN) 
+N#define SET_RX_FIFO_NEED_READ_EN        (0x1 << BIT_RX_FIFO_NEED_READ_EN ) 
+N#define SET_RX_FIFO_OVER_FLOW_EN        (0x1 << BIT_RX_FIFO_OVER_FLOW_EN ) 
+N#define SET_UART_RX_PARITY_ERR_EN       (0x1 << BIT_UART_RX_PARITY_ERR_EN) 
+N#define SET_UART_RX_STOP_ERR_EN         (0x1 << BIT_UART_RX_STOP_ERR_EN  ) 
+N#define SET_UART_TX_STOP_END_EN         (0x1 << BIT_UART_TX_STOP_END_EN  ) 
+N#define SET_UART_RX_STOP_END_EN         (0x1 << BIT_UART_RX_STOP_END_EN  ) 
+N#define SET_UART_RXD_WAKEUP_EN          (0x1 << BIT_UART_RXD_WAKEUP_EN   ) 
+N
+N#define BIT_TX_FIFO_NEED_WRITE_FLAG     0
+N#define BIT_RX_FIFO_NEED_READ_FLAG      1
+N#define BIT_RX_FIFO_OVER_FLOW_FLAG      2
+N#define BIT_UART_RX_PARITY_ERR_FLAG     3
+N#define BIT_UART_RX_STOP_ERR_FLAG       4
+N#define BIT_UART_TX_STOP_END_FLAG       5
+N#define BIT_UART_RX_STOP_END_FLAG       6
+N#define BIT_UART_RXD_WAKEUP_FLAG        7
+N//=====================================================================================
+N
+N
+N
+N//IIC
+N#define REG_APB4_I2C_CN                 (*((volatile unsigned long *)   0x00806400))
+N#define REG_APB4_I2C_STAT               (*((volatile unsigned long *)   0x00806404))
+N#define REG_APB4_I2C_DAT                (*((volatile unsigned long *)   0x00806408))
+N
+N#define I2C_INTR_BIT                    (0x01<<9)
+N#define I2C_INTR_TX                     (0x01<<1)
+N
+N
+N//=====================================================================================
+N// GPIO
+N//=====================================================================================
+N#define REG_APB5_GPIOA_CFG              (*((volatile unsigned long *)   0x00806500))
+N#define REG_APB5_GPIOA_DATA             (*((volatile unsigned long *)   0x00806504))
+N#define REG_APB5_GPIOB_CFG              (*((volatile unsigned long *)   0x00806508))
+N#define REG_APB5_GPIOB_DATA             (*((volatile unsigned long *)   0x0080650C))
+N#define REG_APB5_GPIOC_CFG              (*((volatile unsigned long *)   0x00806510))
+N#define REG_APB5_GPIOC_DATA             (*((volatile unsigned long *)   0x00806514))
+N#define REG_APB5_GPIOD_CFG              (*((volatile unsigned long *)   0x00806518))
+N#define REG_APB5_GPIOD_DATA             (*((volatile unsigned long *)   0x0080651C))
+N#define REG_APB5_GPIOE_CFG              (*((volatile unsigned long *)   0x00806520))
+N#define REG_APB5_GPIOE_DATA             (*((volatile unsigned long *)   0x00806524))
+N                                                                            
+N#define REG_APB5_GPIO_WUATOD_TYPE       (*((volatile unsigned long *)   0x00806540))
+N#define REG_APB5_GPIO_WUE_TYPE          (*((volatile unsigned long *)   0x00806544))
+N#define REG_APB5_GPIO_WUATOD_ENABLE     (*((volatile unsigned long *)   0x00806548))
+N#define REG_APB5_GPIO_WUE_ENABLE        (*((volatile unsigned long *)   0x0080654C))
+N#define REG_APB5_GPIO_WUATOD_STAT       (*((volatile unsigned long *)   0x00806550))
+N#define REG_APB5_GPIO_WUE_STAT          (*((volatile unsigned long *)   0x00806554))
+N
+N#define BIT_GPIO_PERI_EN                0
+N#define BIT_GPIO_OUT_EN_N               8
+N#define BIT_GPIO_PULL_UP                16
+N#define BIT_GPIO_PULL_DOWN              24
+N#define BIT_GPIO_IN_BUFFER              0
+N#define BIT_GPIO_OUT_BUFFER             8
+N#define BIT_GPIO_INPUT_EN               16
+N
+N#define BIT_GPIOA_WU_TYPE               0
+N#define BIT_GPIOB_WU_TYPE               8
+N#define BIT_GPIOC_WU_TYPE               16
+N#define BIT_GPIOD_WU_TYPE               24
+N#define BIT_GPIOE_WU_TYPE               0
+N
+N
+N//=====================================================================================
+N//RTC
+N//=====================================================================================
+N#define REG_APB6_RTC_CFG                (*((volatile unsigned long *)   0x00806600))
+N#define BIT_RTC_ENABLE                  0
+N#define BIT_RTC_CLEAR                   1
+N#define BIT_RTC_ALARM_EN                2
+N#define BIT_RTC_ALARM_MODE              3
+N#define SET_RTC_ENABLE                  (0x1 << BIT_RTC_ENABLE     )
+N#define SET_RTC_CLEAR                   (0x1 << BIT_RTC_CLEAR      )
+N#define SET_RTC_ALARM_EN                (0x1 << BIT_RTC_ALARM_EN   )
+N#define SET_RTC_ALARM_MODE              (0x1 << BIT_RTC_ALARM_MODE )
+N
+N#define REG_APB6_RTC_UNIT               (*((volatile unsigned long *)   0x00806604))
+N#define BIT_RTC_DIV                     0
+N#define BIT_RTC_MSUNIT                  2
+N#define BIT_RTC_SUNIT                   8
+N#define SET_RTC_DIV                     (0x3    << BIT_RTC_DIV   )
+N#define SET_RTC_MSUNIT                  (0x3F   << BIT_RTC_MSUNIT)
+N#define SET_RTC_SUNIT                   (0xFFFF << BIT_RTC_SUNIT )
+N
+N#define REG_APB6_RTC_SET                (*((volatile unsigned long *)   0x00806608))
+N#define BIT_RTC_SECOND                  0
+N#define BIT_RTC_MINUTE                  6
+N#define BIT_RTC_HOUR                    12
+N#define BIT_RTC_WEEK                    17
+N#define SET_RTC_SECOND                  (0x3F << BIT_RTC_SECOND )
+N#define SET_RTC_MINUTE                  (0x3F << BIT_RTC_MINUTE )
+N#define SET_RTC_HOUR                    (0x1F << BIT_RTC_HOUR   )
+N#define SET_RTC_WEEK                    (0x7  << BIT_RTC_WEEK   )
+N
+N#define REG_APB6_RTC_ALM_TIME           (*((volatile unsigned long *)   0x0080660C))
+N#define BIT_RTC_ALARM_SECOND            0
+N#define BIT_RTC_ALARM_MINUTE            6
+N#define BIT_RTC_ALARM_HOUR              12
+N#define BIT_RTC_ALARM_MILLISEC          17
+N#define SET_RTC_ALARM_SECOND            (0x3F  << BIT_RTC_ALARM_SECOND   )
+N#define SET_RTC_ALARM_MINUTE            (0x3F  << BIT_RTC_ALARM_MINUTE   )
+N#define SET_RTC_ALARM_HOUR              (0x1F  << BIT_RTC_ALARM_HOUR     )
+N#define SET_RTC_ALARM_MILLISEC          (0x3FF << BIT_RTC_ALARM_MILLISEC )
+N
+N#define REG_APB6_RTC_ALM_FLAG           (*((volatile unsigned long *)   0x00806610))
+N
+N// RTC Test Firmware Definition
+N#define BK_RTC_CLOCK_MODE         0
+N#define BK_RTC_MILLISEC_MODE      1
+N//=====================================================================================
+N
+N
+N
+N//====================================================================================
+N// RND
+N//====================================================================================
+N#define REG_APB8_RND_CFG                (*((volatile unsigned long *)   0x00806900))
+N#define REG_APB8_RND_DAT                (*((volatile unsigned long *)   0x00806904))
+N
+N
+N//=====================================================================================
+N// ADC                                   
+N//=====================================================================================
+N#define REG_APB7_ADC_CFG                (*((volatile unsigned long *)   0x00806700))
+N#define REG_APB7_ADC_DAT                (*((volatile unsigned long *)   0x00806704))
+N
+N#define BIT_ADC_MODE                    0
+N#define BIT_ADC_EN                      2
+N#define BIT_ADC_CHNL                    3
+N#define BIT_ADC_WAIT_CLK_SETTING        7
+N#define BIT_ADC_INT_CLEAR               8
+N#define BIT_ADC_PRE_DIV                 9
+N#define BIT_ADC_DIV1_MODE				15
+N#define BIT_ADC_SAMPLE_RATE             16
+N#define BIT_ADC_FILTER             		22
+N#define BIT_ADC_BUSY             		29
+N
+N#define BIT_ADC_FIFO_EMPTY              30
+N#define BIT_ADC_FIFO_FULL               31
+N
+N#define SET_ADC_MODE                    (0x3 << BIT_ADC_MODE            )
+N#define SET_ADC_EN                      (0x1 << BIT_ADC_EN              )
+N#define SET_ADC_CHNL                    (0x7 << BIT_ADC_CHNL            )
+N#define SET_ADC_FIFO_EMPTY              (0x1 << BIT_ADC_FIFO_EMPTY      )
+N#define SET_ADC_FIFO_FULL               (0x1 << BIT_ADC_FIFO_FULL       )
+N#define SET_ADC_SAMPLE_RATE             (0x3 << BIT_ADC_SAMPLE_RATE     )
+N#define SET_ADC_WAIT_CLK_SETTING        (0x1 << BIT_ADC_WAIT_CLK_SETTING)
+N#define SET_ADC_INT_CLEAR               (0x1 << BIT_ADC_INT_CLEAR       )
+N
+N//=====================================================================================
+N
+N
+N
+N
+N//FLASH/RAM space (program)
+N#define FLASH_ADDR0                     (*((volatile unsigned long *)   0x0000F000))
+N#define FLASH_ADDR1                     (*((volatile unsigned long *)   0x0000F100))
+N#define FLASH_ADDR2                     (*((volatile unsigned long *)   0x0000F200))
+N#define FLASH_ADDR3                     (*((volatile unsigned long *)   0x0000F300))
+N
+N
+N//===========================================================================================
+N//XVR
+N
+N//===========================================================================================
+N// Analog RF module + Transceiver Registers
+N//===========================================================================================
+N//Analog SPI Registers
+N#define APB_XVER_BASE    0x00801400
+N#define XVR_REG00               (*((volatile unsigned int *)   (APB_XVER_BASE+0x0)))
+N#define XVR_REG01               (*((volatile unsigned int *)   (APB_XVER_BASE+0x4)))
+N#define XVR_REG02               (*((volatile unsigned int *)   (APB_XVER_BASE+0x8)))
+N#define XVR_REG03               (*((volatile unsigned int *)   (APB_XVER_BASE+0xC)))
+N
+N#define XVR_REG04               (*((volatile unsigned int *)   (APB_XVER_BASE+0x10)))
+N#define XVR_REG05               (*((volatile unsigned int *)   (APB_XVER_BASE+0x14)))
+N#define XVR_REG06               (*((volatile unsigned int *)   (APB_XVER_BASE+0x18)))
+N#define XVR_REG07               (*((volatile unsigned int *)   (APB_XVER_BASE+0x1C)))
+N
+N#define XVR_REG08               (*((volatile unsigned int *)   (APB_XVER_BASE+0x20)))
+N#define XVR_REG09               (*((volatile unsigned int *)   (APB_XVER_BASE+0x24)))
+N#define XVR_REG0A               (*((volatile unsigned int *)   (APB_XVER_BASE+0x28)))
+N#define XVR_REG0B               (*((volatile unsigned int *)   (APB_XVER_BASE+0x2C)))
+N
+N#define XVR_REG0C               (*((volatile unsigned int *)   (APB_XVER_BASE+0x30)))
+N#define XVR_REG0D               (*((volatile unsigned int *)   (APB_XVER_BASE+0x34)))
+N#define XVR_REG0E               (*((volatile unsigned int *)   (APB_XVER_BASE+0x38)))
+N#define XVR_REG0F               (*((volatile unsigned int *)   (APB_XVER_BASE+0x3C)))
+N
+N// Read-Back Registers
+N#define XVR_REG10                (*((volatile unsigned int *)   (APB_XVER_BASE+0x40)))
+N#define XVR_REG11                (*((volatile unsigned int *)   (APB_XVER_BASE+0x44)))
+N#define XVR_REG12                (*((volatile unsigned int *)   (APB_XVER_BASE+0x48)))
+N#define XVR_REG13                (*((volatile unsigned int *)   (APB_XVER_BASE+0x4C)))
+N
+N#define XVR_REG14                (*((volatile unsigned int *)   (APB_XVER_BASE+0x50)))
+N#define XVR_REG15                (*((volatile unsigned int *)   (APB_XVER_BASE+0x54)))
+N#define XVR_REG16                (*((volatile unsigned int *)   (APB_XVER_BASE+0x58)))
+N#define XVR_REG17                (*((volatile unsigned int *)   (APB_XVER_BASE+0x5C)))
+N
+N#define XVR_REG18                (*((volatile unsigned int *)   (APB_XVER_BASE+0x60)))
+N#define XVR_REG19                (*((volatile unsigned int *)   (APB_XVER_BASE+0x64)))
+N#define XVR_REG1A                (*((volatile unsigned int *)   (APB_XVER_BASE+0x68)))
+N#define XVR_REG1B                (*((volatile unsigned int *)   (APB_XVER_BASE+0x6C)))
+N
+N#define XVR_REG1C                (*((volatile unsigned int *)   (APB_XVER_BASE+0x70)))
+N#define XVR_REG1D                (*((volatile unsigned int *)   (APB_XVER_BASE+0x74)))
+N#define XVR_REG1E                (*((volatile unsigned int *)   (APB_XVER_BASE+0x78)))
+N#define XVR_REG1F                (*((volatile unsigned int *)   (APB_XVER_BASE+0x7C)))
+N
+N// XVR Config Registers 
+N#define XVR_REG20                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x80)))
+N#define XVR_REG21                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x84)))
+N#define XVR_REG22                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x88)))
+N#define XVR_REG23                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x8C)))
+N
+N#define XVR_REG24                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x90)))
+N#define XVR_REG25                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x94)))
+N#define XVR_REG26                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x98)))
+N#define XVR_REG27                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x9C)))
+N
+N#define XVR_REG28                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xA0)))
+N#define XVR_REG29                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xA4)))
+N#define XVR_REG2A                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xA8)))
+N#define XVR_REG2B                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xAC)))
+N
+N#define XVR_REG2C                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xB0)))
+N#define XVR_REG2D                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xB4)))
+N#define XVR_REG2E                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xB8)))
+N#define XVR_REG2F                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xBC)))
+N
+N#define XVR_REG30                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xC0)))
+N#define XVR_REG31                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xC4)))
+N#define XVR_REG32                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xC8)))
+N#define XVR_REG33                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xCC)))
+N
+N#define XVR_REG34                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xD0)))
+N#define XVR_REG35                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xD4)))
+N#define XVR_REG36                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xD8)))
+N#define XVR_REG37                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xDC)))
+N
+N#define XVR_REG38                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xE0)))
+N#define XVR_REG39                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xE4)))
+N#define XVR_REG3A                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xE8)))
+N#define XVR_REG3B                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xEC)))
+N
+N#define XVR_REG3C                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xF0)))
+N#define XVR_REG3D                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xF4)))
+N#define XVR_REG3E                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xF8)))
+N#define XVR_REG3F                      (*((volatile unsigned int *)   (APB_XVER_BASE+0xFC)))
+N
+N#define XVR_REG40                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x100)))
+N#define XVR_REG41                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x104)))
+N#define XVR_REG42                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x108)))
+N#define XVR_REG43                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x10C)))
+N
+N#define XVR_REG44                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x110)))
+N#define XVR_REG45                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x114)))
+N#define XVR_REG46                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x118)))
+N#define XVR_REG47                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x11C)))
+N
+N#define XVR_REG48                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x120)))
+N#define XVR_REG49                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x124)))
+N#define XVR_REG4A                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x128)))
+N#define XVR_REG4B                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x12C)))
+N
+N#define XVR_REG4C                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x130)))
+N#define XVR_REG4D                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x134)))
+N#define XVR_REG4E                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x138)))
+N#define XVR_REG4F                      (*((volatile unsigned int *)   (APB_XVER_BASE+0x13C)))
+N
+N
+N/// backup analog register
+N//extern u_int32 backup_xvr_analog_reg[];
+N#define mHWreg_Assign_XVR_Regsiter(No,Value) \
+N    { \
+N        XVR_REG##No = Value; \
+N    }
+X#define mHWreg_Assign_XVR_Regsiter(No,Value)     {         XVR_REG##No = Value;     }
+N		
+N
+N#define REG_AHB1_XVER_BASE              (*((volatile unsigned long *)   0x00801488))
+N
+N#define BIT_AUTO_SYNCWORD               (0x1<<31)
+N#define BIT_AUTO_SYNCWIN                (0x1<<30)
+N#define BIT_AUTO_CHNN                   (0x1<<29)
+N
+N
+N//RW////////////////////////////////////////////////////////////////////////////////
+N#define REG_AHB10_RW_INT_MASK        (*((volatile unsigned long *)   0x0081000C))
+N#define REG_AHB10_RW_INT_FLAG          (*((volatile unsigned long *)   0x00810010))
+N#define REG_AHB10_RW_INT_FLAG_RAW          (*((volatile unsigned long *)   0x00810014))	
+N#define REG_AHB10_RW_INT_ACK        (*((volatile unsigned long *)   0x00810018))
+N#define REG_AHB10_RW_BASETIMECNT    (*((volatile unsigned long *)   0x0081001C))
+N#define REG_AHB10_RW_DEEPSLCNTL     (*((volatile unsigned long *)   0x00810030))
+N#define REG_AHB10_RW_DEEPSLTIME     (*((volatile unsigned long *)   0x00810034))
+N#define REG_AHB10_RW_DEEPSLDUR     (*((volatile unsigned long *)   0x00810038))
+N#define REG_AHB10_RW_ENBPRESET     (*((volatile unsigned long *)   0x0081003C))
+N#define REG_AHB10_RW_FINECNTCORR     (*((volatile unsigned long *)   0x00810040))
+N#define REG_AHB10_RW_BASETIMECNTCORR  (*((volatile unsigned long *)   0x00810044))
+N#define REG_AHB10_RW_ERRORTYPESTAT    (*((volatile unsigned long *)   0x00810060))
+N
+N
+N#define INT_RW_AUDIOINT2STAT_MASK      (0x01<<12)
+N#define INT_RW_AUDIOINT1STAT_MASK      (0x01<<11)
+N#define INT_RW_AUDIOINT0STAT_MASK      (0x01<< 10)
+N#define INT_RW_SWINTSTAT_MASK          (0x01<< 9)
+N#define INT_RW_EVENTAPFAINTSTAT_MASK      (0x01<< 8)
+N#define INT_RW_FINETGTIMINTSTAT_MASK      (0x01<< 7)
+N#define INT_RW_GROSSTGTIMINTSTAT_MASK     (0x01<< 6)
+N#define INT_RW_ERRORINTSTAT_MASK     (0x01<< 5)
+N#define INT_RW_CRYPTINTSTAT_MASK     (0x01<< 4)
+N#define INT_RW_EVENTINTSTAT_MASK     (0x01<< 3)
+N#define INT_RW_SLPINTSTAT_MASK       (0x01<< 2)
+N#define INT_RW_RXINTSTAT_MASK        (0x01<< 1)
+N#define INT_RW_CSCNTINTSTAT_MASK     (0x01<< 0)
+N#define INT_RW_AUDIOINT2STAT_bit      (0x01<<12)
+N#define INT_RW_AUDIOINT1STAT_bit      (0x01<<11)
+N#define INT_RW_AUDIOINT0STAT_bit      (0x01<< 10)
+N#define INT_RW_SWINTSTAT_bit          (0x01<< 9)
+N#define INT_RW_EVENTAPFAINTSTAT_bit      (0x01<< 8)
+N#define INT_RW_FINETGTIMINTSTAT_bit      (0x01<< 7)
+N#define INT_RW_GROSSTGTIMINTSTAT_bit     (0x01<< 6)
+N#define INT_RW_ERRORINTSTAT_bit     (0x01<< 5)
+N#define INT_RW_CRYPTINTSTAT_bit     (0x01<< 4)
+N#define INT_RW_EVENTINTSTAT_bit     (0x01<< 3)
+N#define INT_RW_SLPINTSTAT_bit       (0x01<< 2)
+N#define INT_RW_RXINTSTAT_bit        (0x01<< 1)
+N#define INT_RW_CSCNTINTSTAT_bit     (0x01<< 0)
+N
+N#define RW_ENBPRESET_TWEXT_bit     21
+N#define RW_ENBPRESET_TWOSC_bit     10
+N#define RW_ENBPRESET_TWRW_bit     0
+N
+N#endif
+N
+L 7 "app\bim_flash.h" 2
+N
+N
+Nenum 
+N{
+N	FLASH_SPACE_TYPE_MAIN = 0x00,
+N	FLASH_SPACE_TYPE_NVR = 0x01,
+N	FLASH_SPACE_TYPE_INVALID = 0XFF,
+N};
+N
+N
+N#define FLASH_TYPE_EMBEN        FLASH_SPACE_TYPE_NVR
+N#define FLASH_MAIN_SIZE              0x00028000
+N#define FLASH_NVR_SIZE               0x00000200
+N#define FLASH_WRITE_ECC_DATA0 0XA3
+N#define FLASH_WRITE_ECC_DATA1 0X56
+N
+N
+Nvoid bim_flash_init(void);
+Nvoid bim_flash_erase_sector(uint8_t type,uint32_t address);
+Nvoid bim_flash_erase(uint8_t flash_type, uint32_t address, uint32_t size);
+Nvoid bim_flash_read(uint8_t flash_space, uint32_t address, uint32_t length, uint8_t * buffer);
+Nvoid bim_flash_write(uint8_t flash_space, uint32_t address, uint32_t length, uint8_t * buffer);
+Nvoid bim_wdt_enable(uint16_t wdt_cnt);
+Nvoid bim_wdt_disable(void);
+N
+N#endif
+N
+N
+N
+N
+N
+L 5 "app\bim_app.c" 2
+N#include "bim_app.h"
+L 1 "app\bim_app.h" 1
+N#ifndef _BIM_APP_H_
+N#define _BIM_APP_H_
+N
+N#include <stdint.h>
+N
+Nenum
+N{
+N	ICU_CLK_16M,
+N       ICU_CLK_32M,
+N	ICU_CLK_64M,
+N
+N};
+N
+Nvoid bim_icu_init(uint8_t clk);
+N
+N#endif
+L 6 "app\bim_app.c" 2
+N#include "BK3432_reg.h"
+N#include "bim_uart.h"
+L 1 "app\bim_uart.h" 1
+N/**
+N ****************************************************************************************
+N *
+N * @file bim_uart.h
+N *
+N * @brief UART Driver for HCI over UART operation.
+N *
+N * Copyright (C) Beken 2009-2015
+N *
+N *
+N ****************************************************************************************
+N */
+N
+N#ifndef _BIM_UART_H_
+N#define _BIM_UART_H_
+N
+N/**
+N ****************************************************************************************
+N * @defgroup UART UART
+N * @ingroup DRIVERS
+N * @brief UART driver
+N *
+N * @{
+N *
+N ****************************************************************************************
+N */
+N
+N/*
+N * INCLUDE FILES
+N ****************************************************************************************
+N */
+N#include <stdbool.h>          // standard boolean definitions
+L 1 "C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h" 1
+N/* stdbool.h: ISO/IEC 9899:1999 (C99), section 7.16 */
+N
+N/* Copyright (C) ARM Ltd., 2002
+N * All rights reserved
+N * RCS $Revision$
+N * Checkin $Date$
+N * Revising $Author: drodgman $
+N */
+N
+N#ifndef __bool_true_false_are_defined
+N#define __bool_true_false_are_defined 1
+N#define __ARMCLIB_VERSION 5060037
+N
+N  #ifndef __cplusplus /* In C++, 'bool', 'true' and 'false' and keywords */
+N    #define bool _Bool
+N    #define true 1
+N    #define false 0
+N  #else
+S    #ifdef __GNUC__
+S      /* GNU C++ supports direct inclusion of stdbool.h to provide C99
+S         compatibility by defining _Bool */
+S      #define _Bool bool
+S    #endif
+N  #endif
+N
+N#endif /* __bool_true_false_are_defined */
+N
+L 33 "app\bim_uart.h" 2
+N#include <stdint.h>           // standard integer functions
+N
+N
+N
+N#if 0
+S#define UART_PRINTF bim_uart_printf  
+N#else
+N#define UART_PRINTF bim_uart_printf_null 
+N#endif // #if UART_PRINTF_EN
+N 
+N
+N/*
+N * ENUMERATION DEFINITIONS
+N *****************************************************************************************
+N */
+N
+N/*
+N * FUNCTION DECLARATIONS
+N ****************************************************************************************
+N */
+N
+N/**
+N ****************************************************************************************
+N * @brief Initializes the UART to default values.
+N *****************************************************************************************
+N */
+N
+Ntypedef enum _UART_CMD_STATE
+N{
+N    
+N    UART_CMD_STATE_HEAD,
+N    UART_CMD_STATE_OPCODE_ONE,
+N    UART_CMD_STATE_OPCODE_TWO,
+N    UART_CMD_STATE_LENGTH,
+N    UART_CMD_STATE_CMD,
+N    UART_CMD_STATE_CMD_FLASH,
+N    UART_CMD_STATE_LENGTH_FLASH_LEN0,
+N    UART_CMD_STATE_LENGTH_FLASH_LEN1,
+N    UART_CMD_STATE_LENGTH_FLASH_SCMD,
+N    UART_CMD_STATE_PAYLOAD,
+N    UART_CMD_STATE_ERROR_ONE,
+N    UART_CMD_STATE_ERROR_TWO,
+N    UART_CMD_STATE_ERROR_THREE,
+N    UART_CMD_STATE_ERROR_FOUR,
+N    UART_CMD_STATE_PACKET
+N    
+N} UART_CMD_STATE;
+N
+N#define LINK_CHECK_CMD     0X00
+N#define CRC_CHECK_CMD      0X10
+N#define SET_RESET_CMD      0X0E
+N#define SET_BAUDRATE_CMD   0X0F
+N#define STAY_ROM_CMD       0XAA
+N
+N
+N
+N
+N#define BIM_UART0_RX_FIFO_MAX_COUNT  512
+N
+N
+N
+N
+N
+N
+N
+N
+Nvoid bim_uart_init(uint32_t baudrate);
+N
+Nvoid bim_dbg_initial(void);
+N
+Nvoid bim_uart_write( char *buff);
+Nvoid bim_printf(char *title, uint32_t v, uint8_t radix) ;
+Nint bim_dbg_putchar(char * st);
+Nint bim_uart_putchar(char * st);
+Nint bim_uart_printf(const char *fmt,...);
+Nint bim_uart_printf_null(const char *fmt,...);
+Nint bim_dbg_printf(const char *fmt,...);
+Nvoid bim_uart_print_int(unsigned int num);
+Nuint8_t bim_check_uart_stop(void);
+N
+Nvoid bim_cpu_delay( volatile unsigned int times);
+Nvoid uart_cmd_dispath(uint8_t *buff,uint8_t len);
+Nvoid cmd_response( uint8_t cmd, uint8_t length, uint8_t *payload );
+Nvoid operate_flash_cmd_response( uint8_t cmd, uint8_t status,uint16_t length, uint8_t *payload );
+Nvoid bim_uart_data_callback( uint8_t * buff, uint16_t len);
+Nvoid bim_uart_isr(void);
+Nvoid bim_uart_deinit( void );
+N
+N
+N/// @} UART
+N#endif /* _BIM_UART_H_ */
+L 8 "app\bim_app.c" 2
+N#include "bim_updataImage.h"
+L 1 "app\bim_updataImage.h" 1
+N
+N#include <stdint.h>
+N
+N
+N#define FLASH_SEC_SIZE						 (0x1000)
+N#define FLASH_HALF_BLOCK_SIZE				 (0x8000)
+N#define FLASH_ONE_BLOCK_SIZE				 (0x10000)
+N
+N#define SEC_MAX_FSIZE_APP_BLOCK		         (0xA40) //41K/BLOCK_SIZE  //(0xA80)  //42K/BLOCK_SIZE
+N 
+N#define SEC_IMAGE_RUN_APP_FADDR				 (0x12820)
+N#define SEC_IMAGE_RUN_STACK_FADDR			 (0x1020) 
+N
+N#define SEC_IMAGE_OAD_HEADER_APP_FADDR		 (0x12810) 																		
+N#define SEC_IMAGE_OAD_HEADER_STACK_FADDR	 (0x1010) 
+N
+N#define SEC_IMAGE_ALLOC_START_APP_FADDR		 (0x12810) //(74KB)
+N#define SEC_IMAGE_ALLOC_START_STACK_FADDR	 (0x1000)  //(4KB)
+N#define SEC_IMAGE_ALLOC_END_FADDR			 (0x1CC00) //(115KB) //(0x1D000) //(116KB)
+N
+N#define SEC_BACKUP_OAD_HEADER_FADDR			 (0x1CC00) //115kB
+N#define SEC_BACKUP_OAD_IMAGE_FADDR			 (0x1CC10) //115kB + 0X10
+N#define SEC_BACKUP_ALLOC_START_FADDR	     (0x1CC00) //(115KB)
+N#define SEC_BACKUP_ALLOC_END_FADDR			 (0x27000) //(156KB)
+N
+N
+N#define IMAGE_TOTAL_LEN_64K					0x4000		
+N#define IMAGE_TOTAL_LEN_128K				0x8000
+N#define IMAGE_TOTAL_LEN_192K				0xC000
+N
+N
+N#define OAD_APP_PART_UID					(0x42424242)
+N#define OAD_APP_STACK_UID					(0x53535353)
+N
+N
+N/*********************************************************************
+N * TYPEDEFS
+N */
+N// The Image Header will not be encrypted, but it will be included in a Signature.
+Ntypedef struct
+N{
+N    // Secure OAD uses the Signature for image validation instead of calculating a CRC, but the use
+N    // of CRC==CRC-Shadow for quick boot-up determination of a validated image is still used.
+N    uint32_t crc;       // CRC must not be 0x0000 or 0xFFFF.
+N    // User-defined Image Version Number - default logic uses simple a '!=' comparison to start an OAD.
+N  	uint16_t ver; 
+N	
+N	uint16_t len;        // Image length in 4-byte blocks (i.e. HAL_FLASH_WORD_SIZE blocks).
+N	
+N	uint32_t  uid;       // User-defined Image Identification bytes.
+N	uint8_t  crc_status;     // cur image crc status
+N	uint8_t  sec_status;     // cur image sec status
+N	uint16_t  rom_ver;     // Rom ver.
+N} img_hdr_t;
+N
+N
+N
+N
+N#define  BLOCK_SIZE        	0X10
+N
+N#define CRC_UNCHECK 		0xFF
+N#define CRC_CHECK_OK 		0xAA
+N#define CRC_CHECK_FAIL 		0x55
+N
+N#define SECT_UNKNOW			0xFF
+N#define SECT_NORMAL			0xAA
+N#define SECT_ABNORMAL 		0x55		
+N
+Nenum
+N{
+N    SSTATUS_SECT_NORMAL = 0,           
+N    SSTATUS_SECT_ERASED,
+N    SSTATUS_SECT_ABNORMAL,
+N	SSTATUS_SECT_UNKOWN ,
+N	SSTATUS_SECT_DIFF_ROM_VER ,
+N};
+N
+N
+Nvoid bim_erase_image_sec(void);
+N
+Nvoid bim_erase_backup_sec(void);
+N
+Nvoid bim_updata_backup_to_image_sec(void);
+N
+Nvoid bim_updata_image_to_backup_sec(void);
+N
+Nvoid bim_test_crc(void);
+N
+Nvoid bim_test_erase_time(void);
+N
+Nuint8_t bim_select_sec(void);
+N
+Nint make_crc32_table(void);
+N
+Nuint32_t make_crc32(uint32_t crc,unsigned char *string,uint32_t size);
+N
+N
+L 9 "app\bim_app.c" 2
+N
+N
+N
+Ntypedef void (*FUNCPTR)(void);
+N
+Nvoid  updata_memset32(void * dest, uint32_t value, uint32_t size)
+N{
+N	uint32_t *_u8_dest = (uint32_t *)dest;
+N	uint32_t *_u8_end  = (uint32_t *)dest+size*4;
+N
+N	while (_u8_dest < _u8_end)
+N	{
+N		*_u8_dest++ = value;
+N	}
+N}
+N
+N
+Nvoid bim_icu_init(uint8_t clk)
+N{
+N	REG_AHB0_ICU_FLASH &= ~(0xff << 16);
+X	(*((volatile unsigned long *) 0x0080004c)) &= ~(0xff << 16);
+N	REG_AHB0_ICU_FLASH |= (0x15 << 16);
+X	(*((volatile unsigned long *) 0x0080004c)) |= (0x15 << 16);
+N	REG_AHB0_ICU_CPU_STATUS  = 0x771;
+X	(*((volatile unsigned long *) 0x00800038))  = 0x771;
+N
+N	REG_AHB0_ICU_DIGITAL_PWD = REG_AHB0_ICU_DIGITAL_PWD & (~0X02);
+X	(*((volatile unsigned long *) 0x0080005c)) = (*((volatile unsigned long *) 0x0080005c)) & (~0X02);
+N	REG_AHB0_ICU_CORECLKCON = 0X00;  //clk div 0
+X	(*((volatile unsigned long *) 0x00800004)) = 0X00;  
+N	REG_AHB0_ICU_CLKSRCSEL = 0X000001F9; //usr 16m, sel=0, dec=7,normal=7
+X	(*((volatile unsigned long *) 0x00800000)) = 0X000001F9; 
+N	REG_AHB0_ICU_ANA_CTL &= ~(0X01 << 6);
+X	(*((volatile unsigned long *) 0x00800034)) &= ~(0X01 << 6);
+N}
+N
+N
+N#define MAIN_IMAGE_RUN_ADDR         0x1020
+N
+N
+Nvoid bim_main(void)
+N{
+N	int32_t main_point = MAIN_IMAGE_RUN_ADDR;
+X	int32_t main_point = 0x1020;
+N
+N	updata_memset32((uint8_t *)0x00400000, 1, 1);
+N
+N	bim_icu_init(ICU_CLK_16M);
+N
+N	bim_flash_init();
+N
+N	//bim_uart_init(115200);
+N
+N	//REG_AHB0_ICU_INT_ENABLE = (0x01 << 5);
+N	//REG_AHB0_ICU_IRQ_ENABLE = 0x03;
+N	//__enable_irq();
+N	//__disable_irq( );
+N	//REG_AHB0_ICU_INT_ENABLE = 0x00;
+N	//REG_AHB0_ICU_IRQ_ENABLE = 0x00;
+N	updata_memset32((uint8_t *)0x00400000, 0, 1);
+N	//bim_uart_deinit();	
+N	if(1 == bim_select_sec())
+N	{
+N		(*(FUNCPTR)main_point)();
+N	}
+N
+N
+N}
+N

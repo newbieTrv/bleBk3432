@@ -1,0 +1,170 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.26.2.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: TY TY, TY, LIC=GE701-CWUW2-XAYDC-7BQTI-A4NUY-Y4SVV
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.26.2.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARM.DLL V5.26.2.0
+Dialog DLL:      DARMP3.DLL
+Target DLL:      Segger\JLTAgdi.dll V1.61.0.0
+Dialog DLL:      TARMP3.DLL V1.4.0.0
+ 
+<h2>Project:</h2>
+D:\work\体脂秤\蓝牙通用共享体脂秤\tuya_ble_sdk_Demo_Project_bk3432\projects\ble_app_gatt\bk3432.uvproj
+Project File Date:  07/02/2020
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'BK3432_app'
+compiling custom_app_uart_common_handler.c...
+app\custom_app_uart_common_handler.c(32): warning:  #177-D: variable "data_len"  was declared but never referenced
+      uint16_t data_len = (p_in_data[4]<<8) + p_in_data[5];
+app\custom_app_uart_common_handler.c(33): warning:  #177-D: variable "data_buffer"  was declared but never referenced
+      uint8_t *data_buffer = p_in_data+6;
+app\custom_app_uart_common_handler.c: 2 warnings, 0 errors
+compiling app_tuya_ota.c...
+app\app_tuya_ota.c(171): warning:  #177-D: variable "encry_mode"  was declared but never referenced
+      uint8_t encry_mode = 0;
+app\app_tuya_ota.c(175): warning:  #177-D: variable "file_md5"  was declared but never referenced
+      bool file_md5;
+app\app_tuya_ota.c(178): warning:  #177-D: variable "crc_temp"  was declared but never referenced
+      uint32_t crc_temp  = 0;
+app\app_tuya_ota.c(286): warning:  #177-D: variable "encry_mode"  was declared but never referenced
+      uint8_t encry_mode = 0;
+app\app_tuya_ota.c(287): warning:  #177-D: variable "offset_temp"  was declared but never referenced
+      uint32_t offset = 0,offset_temp = 0;
+app\app_tuya_ota.c(339): warning:  #177-D: variable "p_value"  was declared but never referenced
+      uint8_t *p_value;
+app\app_tuya_ota.c(478): warning:  #177-D: variable "check_result"  was declared but never referenced
+      bool check_result;
+app\app_tuya_ota.c(597): warning:  #940-D: missing return statement at end of non-void function "tuya_ota_init_disconnect" 
+  }
+app\app_tuya_ota.c: 8 warnings, 0 errors
+compiling app_tuya.c...
+app\app_tuya.c(92): warning:  #550-D: variable "event_1_data"  was set but never used
+      custom_data_type_t *event_1_data;
+app\app_tuya.c(125): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(int32_t, void *)"
+      event.custom_event_handler = (void *)custom_data_process;
+app\app_tuya.c(134): warning:  #177-D: variable "result"  was declared but never referenced
+      int16_t result = 0;
+app\app_tuya.c(130): warning:  #177-D: variable "sn"  was declared but never referenced
+  static uint16_t sn = 0;
+app\app_tuya.c(131): warning:  #177-D: variable "time_stamp"  was declared but never referenced
+  static uint32_t time_stamp = 1587795793;
+app\app_tuya.c: 5 warnings, 0 errors
+compiling tuya_ble_api.c...
+app\tuya_ble_sdk\tuya_ble_api.c(285): warning:  #177-D: variable "rev_len"  was declared but never referenced
+      uint16_t rev_len,data_len;
+app\tuya_ble_sdk\tuya_ble_api.c(285): warning:  #177-D: variable "data_len"  was declared but never referenced
+      uint16_t rev_len,data_len;
+app\tuya_ble_sdk\tuya_ble_api.c(864): warning:  #177-D: variable "event"  was declared but never referenced
+      tuya_ble_cb_evt_param_t event;
+app\tuya_ble_sdk\tuya_ble_api.c: 3 warnings, 0 errors
+compiling custom_app_product_test.c...
+app\custom_app_product_test.c(54): warning:  #550-D: variable "data_buffer"  was set but never used
+      uint8_t *data_buffer = NULL;
+app\custom_app_product_test.c: 1 warning, 0 errors
+compiling app_task.c...
+compiling app_tuya_service.c...
+app\app_tuya_service.c(66): warning:  #177-D: variable "test_buf"  was declared but never referenced
+  static uint8_t test_buf[32];
+app\app_tuya_service.c(67): warning:  #177-D: variable "key"  was declared but never referenced
+  static uint8_t key[16];
+app\app_tuya_service.c(68): warning:  #177-D: variable "iv"  was declared but never referenced
+  static uint8_t iv[16];
+app\app_tuya_service.c(69): warning:  #177-D: variable "out_len"  was declared but never referenced
+  static uint32_t out_len;
+app\app_tuya_service.c: 4 warnings, 0 errors
+compiling tuya_ble_main.c...
+compiling tuya_ble_event_handler.c...
+app\tuya_ble_sdk\tuya_ble_event_handler.c(369): warning:  #177-D: variable "uart_send_buffer"  was declared but never referenced
+      uint8_t *uart_send_buffer;
+app\tuya_ble_sdk\tuya_ble_event_handler.c(370): warning:  #177-D: variable "uart_send_len"  was declared but never referenced
+      uint16_t uart_send_len;
+app\tuya_ble_sdk\tuya_ble_event_handler.c: 2 warnings, 0 errors
+compiling tuya_ble_app_production_test.c...
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(266): warning:  #177-D: variable "pid_len"  was declared but never referenced
+      uint8_t pid_len = 0,i = 0,pid_pos = 0;
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(266): warning:  #177-D: variable "i"  was declared but never referenced
+      uint8_t pid_len = 0,i = 0,pid_pos = 0;
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(266): warning:  #177-D: variable "pid_pos"  was declared but never referenced
+      uint8_t pid_len = 0,i = 0,pid_pos = 0;
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(372): warning:  #177-D: variable "mac_temp"  was declared but never referenced
+      uint8_t mac_temp[13];
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(589): warning:  #223-D: function "sprintf" declared implicitly
+      length = sprintf((char *)alloc_buf,"{\"ret\":true,\"firmName\":\"%s\",\"firmVer\":\"%s\"}",APP_BUILD_FIRMNAME,TY_APP_VER_STR);
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(627): warning:  #223-D: function "sprintf" declared implicitly
+          length = sprintf((char *)true_buf,"{\"ret\":true,\"rssi\":\"%d\"}",rssi);
+app\tuya_ble_sdk\tuya_ble_app_production_test.c(637): warning:  #550-D: variable "data_buffer"  was set but never used
+      uint8_t *data_buffer = NULL;
+app\tuya_ble_sdk\tuya_ble_app_production_test.c: 8 warnings, 0 errors
+  static void tuya_ble_prod_monitor_timer_stop(void)
+compiling tuya_ble_gatt_send_queue.c...
+compiling tuya_ble_data_handler.c...
+app\tuya_ble_sdk\tuya_ble_data_handler.c(832): warning:  #550-D: variable "encry_mode"  was set but never used
+      uint8_t encry_mode;
+app\tuya_ble_sdk\tuya_ble_data_handler.c(1284): warning:  #188-D: enumerated type mixed with another type
+      event.dp_with_flag_response_data.mode = recv_data[15];
+app\tuya_ble_sdk\tuya_ble_data_handler.c(1310): warning:  #188-D: enumerated type mixed with another type
+      event.dp_with_flag_and_time_response_data.mode = recv_data[15];
+app\tuya_ble_sdk\tuya_ble_data_handler.c(1396): warning:  #177-D: variable "err"  was declared but never referenced
+      uint32_t err=0;
+app\tuya_ble_sdk\tuya_ble_data_handler.c(1397): warning:  #177-D: variable "retries_cnt"  was declared but never referenced
+      int8_t retries_cnt = 0;
+app\tuya_ble_sdk\tuya_ble_data_handler.c(46): warning:  #177-D: variable "tuya_ble_mcu_firmware_version"  was declared but never referenced
+  static uint32_t tuya_ble_mcu_firmware_version = 0;
+app\tuya_ble_sdk\tuya_ble_data_handler.c(47): warning:  #177-D: variable "tuya_ble_mcu_hardware_version"  was declared but never referenced
+  static uint32_t tuya_ble_mcu_hardware_version = 0;
+app\tuya_ble_sdk\tuya_ble_data_handler.c: 7 warnings, 0 errors
+compiling tuya_ble_app_uart_common_handler.c...
+app\tuya_ble_sdk\tuya_ble_app_uart_common_handler.c(55): warning:  #177-D: variable "data_len"  was declared but never referenced
+      uint16_t data_len = (p_in_data[4]<<8) + p_in_data[5];
+app\tuya_ble_sdk\tuya_ble_app_uart_common_handler.c(56): warning:  #177-D: variable "data_buffer"  was declared but never referenced
+      uint8_t *data_buffer = p_in_data+6;
+app\tuya_ble_sdk\tuya_ble_app_uart_common_handler.c(72): warning:  #177-D: variable "data_len"  was declared but never referenced
+      uint16_t data_len = (p_in_data[4]<<8) + p_in_data[5];
+app\tuya_ble_sdk\tuya_ble_app_uart_common_handler.c(73): warning:  #177-D: variable "data_buffer"  was declared but never referenced
+      uint8_t *data_buffer = p_in_data+6;
+app\tuya_ble_sdk\tuya_ble_app_uart_common_handler.c: 4 warnings, 0 errors
+compiling tuya_ble_storage.c...
+app\tuya_ble_sdk\tuya_ble_storage.c(58): warning:  #177-D: variable "crc_old"  was declared but never referenced
+      uint32_t crc,crc_old;
+app\tuya_ble_sdk\tuya_ble_storage.c(82): warning:  #177-D: variable "crc_old"  was declared but never referenced
+      uint32_t crc,crc_old;
+app\tuya_ble_sdk\tuya_ble_storage.c: 2 warnings, 0 errors
+compiling tuya_ble_port.c...
+linking...
+Program Size: Code=31668 RO-data=1616 RW-data=176 ZI-data=11912  
+After Build - User command #1: fromelf --bin --output .\output\app\bk3432_ble_app.bin .\obj\bk3432_ble_app.axf
+After Build - User command #2: .\output\encrypt_app.bat
+D:\work\体脂秤\蓝牙通用共享体脂秤\tuya_ble_sdk_Demo_Project_bk3432\projects\ble_app_gatt>.\output\BinConvert_3432.exe  -oad .\output\bim\bk3432_ble_bim.bin  .\output\stack\bk3432_ble_stack.bin  .\output\app\bk3432_ble_app.bin -m 0x1020 -l 0x12820 -v 0x1111 -rom_v 0x0005 -e 00000000 00000000 00000000 00000000 
+cmd_bin_oad.stack_file_addr :0x1020
+binary version hex:0x1111; dec:4369
+Arm Image Binary will be converted to OAD format binary file.....
+cmd_bin_oad.stack_file_addr=1020
+boot_bin_len=ec4
+add stack bin start
+oad_stack_app_bin_len=19c00
+oad_app_bin_len=8400
+07 9c 87 67 11 11 00 21 42 42 42 42 ff ff 05 00 /**< @CREATE_FILE_SUCCESS */
+/**< @Download flash file:.\output\app\bk3432_ble_app_merge.bin
+/**< @OAD file :.\output\app\bk3432_ble_app_stack.bin,CRC = 0x427f8fa8
+/**< @OAD file :.\output\app\bk3432_ble_app_app.bin,CRC = 0x67879c07
+/**< @author <gang.cheng@bekencorp.com> */
+/**< @version v0.3 */
+".\obj\bk3432_ble_app.axf" - 0 Error(s), 45 Warning(s).
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>
