@@ -19,6 +19,7 @@
 - 不支持通过串口协议下载固件，开发调试时每次必须通过 BekenHIDTool 软件使用 spi 下载器 下载固件，所以每次下载固件时都会清空整个flash信息，包括授权信息等。
 - UART2用于授权以及和外部MCU通信，UART1用于log输出。
 - 工程路径：`tuya_ble_sdk_Demo_Project_bk3432\bk3432\projects\ble_app_gatt`
+- output目录下的`BinConvert_3432.exe.1`重命名为`BinConvert_3432.exe` 。
 
 
 
