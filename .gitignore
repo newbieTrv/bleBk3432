@@ -1,8 +1,14 @@
 **/_build
-**/Output
 *.TMP
 *.scvd
 *.html
+*.crf
+*.d
+*.o
+*.htm
+*.dep
+*.axf
+*.lnp
 *.uvguix.*
 *JLinklog*
 
