@@ -329,7 +329,17 @@ void rw_main(void)
 
 		// Checks for sleep have to be done with interrupt disabled
 		GLOBAL_INT_DISABLE();
-
+#if 1 //fx test
+		
+extern unsigned char doTestFlg;
+extern void fx_test(void);
+		
+		if(doTestFlg)
+		{
+			doTestFlg=0;
+			fx_test();
+		}
+#endif
 		//oad_updating_user_section_pro();
 
 		if(wdt_disable_flag==1)
@@ -338,6 +348,8 @@ void rw_main(void)
 		}
 #if SYSTEM_SLEEP
 
+		
+		
 		// Check if the processor clock can be gated
 		sleep_type = rwip_sleep();
 		if((sleep_type & RW_MCU_DEEP_SLEEP) == RW_MCU_DEEP_SLEEP)

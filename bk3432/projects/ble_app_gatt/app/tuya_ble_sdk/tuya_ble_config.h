@@ -161,7 +161,7 @@
  */
 
 #ifndef TUYA_APP_LOG_ENABLE
-#define TUYA_APP_LOG_ENABLE 0 
+#define TUYA_APP_LOG_ENABLE 1 
 #endif
 
 #ifndef TUYA_APP_LOG_COLORS_ENABLE
@@ -199,6 +199,7 @@
 #ifndef TUYA_NV_AREA_SIZE
 #define TUYA_NV_AREA_SIZE              (3*TUYA_NV_ERASE_MIN_SIZE)
 #endif
+
 
 
 #endif

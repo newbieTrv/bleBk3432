@@ -467,3 +467,52 @@ tuya_ble_status_t tuya_ble_storage_write_auth_key_device_id_mac(uint8_t *auth_ke
     return ret;
 }
 
+
+
+#define USER_NV_ERASE_MIN_SIZE  (0x200)
+#define USER_NV_START_ADDR1  0x27000
+
+#define WRITE_BUF_LEN 240
+unsigned char write_buffer[WRITE_BUF_LEN];
+
+#define READ_BUF_LEN 240
+unsigned char read_buffer[READ_BUF_LEN];
+unsigned char doTestFlg;
+
+	extern void flash_erase(uint8_t flash_type, uint32_t address, uint32_t size);
+void fx_test(void)
+{
+	unsigned char err_code;
+	// step1:
+	//erease- A
+tuya_ble_nv_erase(USER_NV_START_ADDR1,USER_NV_ERASE_MIN_SIZE);
+	
+
+        
+			//write-A
+			memset(write_buffer,0x34,WRITE_BUF_LEN);
+			tuya_ble_nv_write(USER_NV_START_ADDR1,write_buffer,WRITE_BUF_LEN);
+				
+			//read-A
+				memset(read_buffer,0,READ_BUF_LEN);
+        tuya_ble_nv_read(USER_NV_START_ADDR1,(uint8_t *)read_buffer,READ_BUF_LEN);
+
+				TUYA_APP_LOG_HEXDUMP_DEBUG("fx resd  data-A:",read_buffer,READ_BUF_LEN);
+
+	
+	// step2:
+	//erease- B
+tuya_ble_nv_erase(USER_NV_START_ADDR1,USER_NV_ERASE_MIN_SIZE);
+        
+			//write-B
+			memset(write_buffer,0x66,WRITE_BUF_LEN);
+			tuya_ble_nv_write(USER_NV_START_ADDR1,write_buffer,WRITE_BUF_LEN);
+				
+			//read-B
+				memset(read_buffer,0,READ_BUF_LEN);
+        tuya_ble_nv_read(USER_NV_START_ADDR1,(uint8_t *)read_buffer,READ_BUF_LEN);
+
+				TUYA_APP_LOG_HEXDUMP_DEBUG("fx resd  data-B:",read_buffer,READ_BUF_LEN);
+
+
+}
