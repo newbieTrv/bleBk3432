@@ -67,9 +67,9 @@
 tuya_ble_device_param_t device_param = {0};
 
 
-static const char auth_key_test[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-static const char device_id_test[] = "yyyyyyyyyyyyyyyy";
-static const uint8_t mac_test[6] = {0xFE,0xFE,0xFE,0xFE,0xFE,0xFE};
+static const char auth_key_test[] = "LdnP746AgmSGUnUiiLGg38lMskFd2R7u";
+static const char device_id_test[] = "tuya2f41ce8a0119";
+static const uint8_t mac_test[6] = {0xB1,0x41,0x1C,0x4D,0x23,0xDC};
 
 
 static uint8_t dp_data_array[200];
@@ -195,7 +195,7 @@ static void tuya_cb_handler(tuya_ble_cb_evt_param_t* event)
 
 static void tuya_ble_app_init(void)
 {
-    device_param.device_id_len = 0;    //If use the license stored by the SDK,initialized to 0, Otherwise 16.
+    device_param.device_id_len = 16;    //If use the license stored by the SDK,initialized to 0, Otherwise 16.
     
     if(device_param.device_id_len==16)
     {

@@ -41,7 +41,7 @@
  ****************************************************************************************
  */
 
-#define APP_PRODUCT_ID  "xxxxxxxx" 
+#define APP_PRODUCT_ID  "przwh7nj" 
 
 #define APP_BUILD_FIRMNAME  "tuya_ble_sdk_app_demo_bk3432"
 
