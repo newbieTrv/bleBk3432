@@ -315,6 +315,8 @@ void rw_main(void)
     user_timer_init();
 #endif
 	
+	gpio_config(0x31, OUTPUT, PULL_NONE);
+	
 	UART_PRINTF("start 2\r\n");
 
 	/*

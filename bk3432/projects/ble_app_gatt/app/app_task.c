@@ -796,6 +796,42 @@ static int app_tuya_event_handler(ke_msg_id_t const msgid,
 	return (KE_MSG_CONSUMED);                                    
                                          
 }
+#if 1	//????,???????????,????? 
+static unsigned char fxflg1;
+
+static int app_tuya_fx_turn_handler(ke_msg_id_t const msgid,
+                                struct app_tuya_ble_evt_param_t const *param,
+                                ke_task_id_t const dest_id,
+                                ke_task_id_t const src_id)
+{
+
+	TUYA_APP_LOG_INFO("enter app_tuya_fx_turn_handler"); 
+
+
+#if 1
+
+	if(fxflg1)
+	{
+	gpio_set(0x31,1);
+		TUYA_APP_LOG_INFO("p31=1"); 
+
+	}
+	else
+	{
+	gpio_set(0x31,0);
+		TUYA_APP_LOG_INFO("p31=0"); 
+
+	}
+	fxflg1=!fxflg1;
+
+#endif
+
+	tuya_ble_fx_turn_timer_start();
+
+	return (KE_MSG_CONSUMED);                                    
+                                         
+}
+#endif
 
 /*
  * GLOBAL VARIABLES DEFINITION
@@ -824,6 +860,7 @@ const struct ke_msg_handler appm_default_state[] =
     {APP_TUYA_CONNECT_MONITOR_TIMER, (ke_msg_func_t)app_tuya_connect_monitor_timer_handler},
 	{APP_TUYA_PROD_MONITOR_TIMER,   (ke_msg_func_t)app_tuya_prod_monitor_timer_handler},
     {APP_TUYA_BLE_EVT,				(ke_msg_func_t)app_tuya_event_handler},
+    {APP_TUYA_FX_TURN_EVT,				(ke_msg_func_t)app_tuya_fx_turn_handler},
 };
 
 /* Specifies the message handlers that are common to all states. */

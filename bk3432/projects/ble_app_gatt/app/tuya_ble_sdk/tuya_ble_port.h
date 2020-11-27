@@ -235,6 +235,9 @@ void tuya_ble_connect_monitor_timer_stop(void);
 
 void tuya_ble_device_reset_time_delay_ms(uint32_t ms);
 
+void tuya_ble_fx_turn_timer_start(void);
+void tuya_ble_fx_turn_timer_stop(void);
+
 #endif
 
 

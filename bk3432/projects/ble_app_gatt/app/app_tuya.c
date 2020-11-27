@@ -226,6 +226,8 @@ void app_tuya_init(void)
     app_tuya_service_init();
     tuya_ble_app_init();
 	
+
+	
 }
 
 

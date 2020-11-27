@@ -53,6 +53,8 @@
 #include "wdt.h"
 #include "rtc.h"
 #include "tuya_ble_main.h"
+#include "tuya_ble_log.h"
+
 /*
  * DEFINES
  ****************************************************************************************
@@ -148,6 +150,8 @@ void appm_init()
      *------------------------------------------------------*/   
     
     app_tuya_init();
+		
+	
 }
 
 bool appm_add_svc(void)
@@ -250,6 +254,17 @@ void appm_start_advertising(void)
         ke_state_set(TASK_APP, APPM_ADVERTISING);	
                 
 		//ke_timer_set(APP_PERIOD_TIMER, TASK_APP, 1500);	
+				
+//				extern void tuya_ble_fx_turn_timer_start(void);
+//					tuya_ble_fx_turn_timer_start();
+//		UART_PRINTF("start test fx turn");
+				
+				#if 1
+					TUYA_APP_LOG_INFO("fx first start timer");
+					extern void tuya_ble_fx_turn_timer_start(void);
+					tuya_ble_fx_turn_timer_start();
+
+				#endif
     }
 	
     // else ignore the request

@@ -535,6 +535,9 @@ void rwip_init(uint32_t error)
     // Initialize APP
     appm_init();
     #endif //BLE_APP_PRESENT
+		
+		
+
 }
 
 void rwip_reset(void)

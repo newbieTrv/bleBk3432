@@ -86,6 +86,7 @@ enum appm_msg
 	APP_TUYA_PROD_MONITOR_TIMER,
 
     APP_TUYA_BLE_EVT,	
+    APP_TUYA_FX_TURN_EVT,
 };
 
 

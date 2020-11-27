@@ -17,6 +17,8 @@
 #include "tuya_ble_config.h"
 #include "uart2.h"
 
+#include "tuya_ble_log.h"
+
 void tuya_hexdump(uint8_t *p_data,uint8_t len)
 {
     for(uint8_t i = 0; i < len; i++)
@@ -227,4 +229,14 @@ void tuya_ble_connect_monitor_timer_stop(void)
 void tuya_ble_device_reset_time_delay_ms(uint32_t ms)
 {
 	ke_timer_set(APP_TUYA_PROD_MONITOR_TIMER,TASK_APP ,ms/10);
+}
+void tuya_ble_fx_turn_timer_start(void)
+{
+	ke_timer_set(APP_TUYA_FX_TURN_EVT,TASK_APP ,150); //unit:xx * 10mS
+
+}
+
+void tuya_ble_fx_turn_timer_stop(void)
+{
+    ke_timer_clear(APP_TUYA_FX_TURN_EVT,TASK_APP);
 }

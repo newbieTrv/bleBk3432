@@ -73,7 +73,7 @@
 #endif
 
 #ifndef TUYA_APP_LOG_COLORS_ENABLE
-#define TUYA_APP_LOG_COLORS_ENABLE      0
+#define TUYA_APP_LOG_COLORS_ENABLE      1
 #endif
 
 
