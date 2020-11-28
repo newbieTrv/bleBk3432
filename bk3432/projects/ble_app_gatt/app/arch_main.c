@@ -214,7 +214,7 @@ void user_timer_init(void)
 
 	timer_desc.channel = 1;            				  
     timer_desc.mode    = 1<<0 | 1<<1 | 1<<2 | 1<<4;   
-    timer_desc.end_value  = 65534;                      
+    timer_desc.end_value  = 16000; // 16M -> 1mS	
     timer_desc.duty_cycle = 0;                        
     timer_desc.p_Int_Handler = user_timer_cb;  	
 
@@ -309,11 +309,12 @@ void rw_main(void)
 	// finally start interrupt handling
 	GLOBAL_INT_START();
 
-#if 0
+#if 1 //enable this
     gpio_config(0x11, OUTPUT, PULL_NONE);
     gpio_set(0x11, 0);
     user_timer_init();
 #endif
+
 	
 	UART_PRINTF("start 2\r\n");
 

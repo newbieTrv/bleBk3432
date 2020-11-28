@@ -197,7 +197,7 @@ static void tuya_ble_app_init(void)
 {
     device_param.device_id_len = 16;    //If use the license stored by the SDK,initialized to 0, Otherwise 16.
     
-    if(device_param.device_id_len==0)
+    if(device_param.device_id_len==16)
     {
         memcpy(device_param.auth_key,(void *)auth_key_test,AUTH_KEY_LEN);
         memcpy(device_param.device_id,(void *)device_id_test,DEVICE_ID_LEN);

@@ -167,10 +167,21 @@ void gpio_init(void)
 }
 
 
+
+volatile unsigned char trigerFlg;
 void gpio_triger(uint8_t gpio)
 {
-	gpio_set(gpio, 1);
-	gpio_set(gpio, 0);
+	trigerFlg=!trigerFlg;
+	if(trigerFlg)
+	{
+		gpio_set(gpio, 1);
+	}
+	else
+	{
+		gpio_set(gpio, 0);
+	}
+	
+	
 }
 
 
