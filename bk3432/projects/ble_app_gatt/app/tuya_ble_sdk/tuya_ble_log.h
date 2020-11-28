@@ -37,7 +37,7 @@
 #endif
 
 #ifndef TUYA_BLE_LOG_COLORS_ENABLE
-#define TUYA_BLE_LOG_COLORS_ENABLE      0
+#define TUYA_BLE_LOG_COLORS_ENABLE      1
 #endif
 
 
