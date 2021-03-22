@@ -240,6 +240,39 @@ void user_timer_init(void)
 extern struct rom_env_tag rom_env;
 
 void rwip_eif_api_init(void);
+
+
+#if 1
+#define PIN_TEST1 0x03 //P03 引脚作为输入中断
+void fx_gpio_inter(void)
+{
+
+
+ UART_PRINTF("v=%d",gpio_get_input(PIN_TEST1));
+
+}	
+void config_pin(void)
+{
+	gpio_config(PIN_TEST1, INPUT, PULL_HIGH); 
+	
+	#if 1
+	REG_APB5_GPIO_WUATOD_TYPE |= 1<<(8*(PIN_TEST1>>4)+(PIN_TEST1&0x0f));  //0：up trigger  1： down trigger
+	REG_APB5_GPIO_WUATOD_STAT |= 1<<(8*(PIN_TEST1>>4)+(PIN_TEST1&0x0f));
+	Delay_ms(2);
+	REG_APB5_GPIO_WUATOD_ENABLE |= 1<<(8*(PIN_TEST1>>4)+(PIN_TEST1&0x0f));
+	REG_AHB0_ICU_DEEP_SLEEP0 |= 1<<(8*(PIN_TEST1>>4)+(PIN_TEST1&0x0f));
+	REG_AHB0_ICU_INT_ENABLE |= (0x01 << 9);
+	#endif
+}	
+
+void fx_gpio_test(void)
+{
+
+	config_pin();
+	gpio_cb_register(fx_gpio_inter);
+	
+}
+#endif
 void rw_main(void)
 {
 
@@ -316,6 +349,7 @@ void rw_main(void)
 #endif
 	
 	UART_PRINTF("start 2\r\n");
+	fx_gpio_test();
 
 	/*
 	 ***************************************************************************

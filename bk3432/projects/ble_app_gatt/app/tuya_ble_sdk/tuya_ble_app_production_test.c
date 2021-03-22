@@ -649,6 +649,7 @@ __TUYA_BLE_WEAK void tuya_ble_custom_app_production_test_process(uint8_t channel
     
     switch(cmd)
     {   
+        case 0x0011:
 
         
         default:

@@ -181,7 +181,7 @@ void gpio_cb_register(GPIO_INT_CALLBACK_T cb)
 		gpio_int_cb = cb;
 	}
 }
-
+extern void config_pin(void);
 void gpio_isr(void)
 {
 	REG_APB5_GPIO_WUATOD_ENABLE = 0x00000000; 
@@ -196,6 +196,7 @@ void gpio_isr(void)
 	{
 		(*gpio_int_cb)();
 	}
+	config_pin();
 }
 
 void gpio_test_init(void)
